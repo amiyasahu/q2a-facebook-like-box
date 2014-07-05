@@ -132,13 +132,13 @@
                                     'label' => qa_lang('flb_like_box/like_box_height_label'),
                                     'type'  => 'text',
                                     'tags'  => 'name="flb_like_box_height"',
-                                    'value' => (!!qa_opt('flb_like_box_height')) ? qa_opt('flb_like_box_height') : 320 ,
+                                    'value' => (!!qa_opt('flb_like_box_height')) ? qa_opt('flb_like_box_height') : 320 , /*this default value is to fit for Snow theme */
                     ),
                      'flb_like_box_width' => array(
                         						'label' => qa_lang('flb_like_box/like_box_width_label'),
                         						'type'  => 'text',
                         						'tags'  => 'name="flb_like_box_width"',
-                        						'value' => (!!qa_opt('flb_like_box_width')) ? qa_opt('flb_like_box_width') : 360 ,
+                        						'value' => (!!qa_opt('flb_like_box_width')) ? qa_opt('flb_like_box_width') : 200 , /*this default value is to fit for Snow theme */
                     ),
 
                 ),
@@ -156,7 +156,7 @@
 		function output_widget($region, $place, $themeobject, $template, $request, $qa_content)
 		{
 
-			$widget_opt  = qa_get_options(array('flb_page_url','flb_like_box_colorscheme','flb_like_box_header','flb_like_box_show_border','flb_like_box_show_faces','flb_like_box_data_stream','flb_like_box_height','flb_like_box_width'));
+			      $widget_opt  = qa_get_options(array('flb_page_url','flb_like_box_colorscheme','flb_like_box_header','flb_like_box_show_border','flb_like_box_show_faces','flb_like_box_data_stream','flb_like_box_height','flb_like_box_width'));
             $fb_page_url = $this->get_fb_settings($widget_opt , 'url') ;	
             
             if (!$fb_page_url) {
@@ -182,6 +182,7 @@
             $data['height']      = 'data-height="'.$height.'"' ;
             $data['width']       = 'data-width="'.$width.'"' ;
             $data_str = implode(' ', $data ) ;
+            
             $fb_like_box =   '<div class="fb-like-box" '.$data_str.'> </div>'  ;
             
             $facebook_app_id = qa_opt('facebook_app_id');
@@ -211,6 +212,7 @@
             $themeobject->output(ob_get_clean());
                        
 		}
+    
 		function get_fb_settings($widget_opt , $opt )
        {
             $value = "" ;

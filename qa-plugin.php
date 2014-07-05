@@ -2,7 +2,8 @@
 
 /*
 	Question2Answer (c) Gideon Greenspan
-
+	Facebook LikeBox (c) Amiya Sahu (developer.amiya@outlook.com)
+	
 	http://www.question2answer.org/
 
 	

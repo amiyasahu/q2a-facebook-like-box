@@ -1,7 +1,8 @@
 <?php
 
 /*
-	Question2Answer (c) Gideon Greenspan
+  Question2Answer (c) Gideon Greenspan
+	Facebook LikeBox (c) Amiya Sahu (developer.amiya@outlook.com)
 
 	http://www.question2answer.org/
 
@@ -67,7 +68,7 @@
 			}
 			
 			return array(
-				'ok' => $saved ? 'Facebook LikeBox settings saved' : null,
+				'ok' => $saved ? qa_lang('flb_like_box/settings_saved') : null,
 				
 				'fields' => array(
                     'flb_page_url' => array(
@@ -186,6 +187,7 @@
             $facebook_app_id = qa_opt('facebook_app_id');
 
             if (!$facebook_app_id) {
+                // if the facebook app id is not set set it with app id given by the Facebook 
                 $facebook_app_id = "576492145800361" ; 
             }
 

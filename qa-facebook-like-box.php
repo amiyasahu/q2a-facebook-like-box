@@ -103,7 +103,7 @@
                                     'tags'  => 'name="flb_like_box_show_border"',
                                     'value' =>  qa_opt('flb_like_box_show_border'),
                                     'options' => array(
-                                    	'false' => 'false',
+                                    	  'false' => 'false',
                                         'true'  =>'true',
                                     ),
                     ),
@@ -118,14 +118,14 @@
                                     ),
                     ),
                    'flb_like_box_data_stream' => array(
-						'label' => qa_lang('flb_like_box/show_stream_label'),
-						'type'  => 'select',
-						'tags'  => 'name="flb_like_box_data_stream"',
-						'value' => qa_opt('flb_like_box_data_stream'),
-						'options' => array(
+                        						'label' => qa_lang('flb_like_box/show_stream_label'),
+                        						'type'  => 'select',
+                        						'tags'  => 'name="flb_like_box_data_stream"',
+                        						'value' => qa_opt('flb_like_box_data_stream'),
+                        						'options' => array(
                                           'false' => 'false',
                                           'true'  =>  'true',
-						),
+                        						),
                     ),
 
                     'flb_like_box_height' => array(
@@ -135,20 +135,20 @@
                                     'value' => (!!qa_opt('flb_like_box_height')) ? qa_opt('flb_like_box_height') : 320 ,
                     ),
                      'flb_like_box_width' => array(
-						'label' => qa_lang('flb_like_box/like_box_width_label'),
-						'type'  => 'text',
-						'tags'  => 'name="flb_like_box_width"',
-						'value' => (!!qa_opt('flb_like_box_width')) ? qa_opt('flb_like_box_width') : 360 ,
+                        						'label' => qa_lang('flb_like_box/like_box_width_label'),
+                        						'type'  => 'text',
+                        						'tags'  => 'name="flb_like_box_width"',
+                        						'value' => (!!qa_opt('flb_like_box_width')) ? qa_opt('flb_like_box_width') : 360 ,
                     ),
 
                 ),
 				
 				'buttons' => array(
-					array(
-						'label' => 'Save Changes',
-						'tags' => 'name="fb_like_box_save_btn"',
-					),
-				),
+      					array(
+      						'label' => 'Save Changes',
+      						'tags' => 'name="fb_like_box_save_btn"',
+      					),
+				 ),
 			);
 		}
 

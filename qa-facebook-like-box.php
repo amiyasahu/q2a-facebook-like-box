@@ -183,6 +183,13 @@
             $data_str = implode(' ', $data ) ;
             $fb_like_box =   '<div class="fb-like-box" '.$data_str.'> </div>'  ;
             
+            $facebook_app_id = qa_opt('facebook_app_id');
+
+            if (!$facebook_app_id) {
+                $facebook_app_id = "576492145800361" ; 
+            }
+
+            ob_start();
             ?>
               <!--  widget start  -->
                   <div id="fb-root"></div>
@@ -190,7 +197,7 @@
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) return;
                     js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=576492145800361&version=v2.0";
+                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo $facebook_app_id; ?>&version=v2.0";
                     fjs.parentNode.insertBefore(js, fjs);
                   }(document, 'script', 'facebook-jssdk'));</script>
                   <div class="fb-like-box clearfix">
@@ -198,6 +205,8 @@
                   </div>
               <!--  widget ends  -->
             <?php
+
+            $themeobject->output(ob_get_clean());
                        
 		}
 		function get_fb_settings($widget_opt , $opt )

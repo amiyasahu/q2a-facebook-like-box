@@ -270,7 +270,7 @@
                                     'label' => qa_lang('flb_like_box/m_like_modal_height_label'),
                                     'type'  => 'text',
                                     'tags'  => 'name="flb_like_modal_height"',
-                                    'value' => (!!qa_opt('flb_like_modal_height')) ? qa_opt('flb_like_modal_height') : 320 , /*this default value is to fit for Snow theme */
+                                    'value' => (!!qa_opt('flb_like_modal_height')) ? qa_opt('flb_like_modal_height') : 300 , /*this default value is to fit for Snow theme */
                     ),
                      'flb_like_modal_width' => array(
                                     'id' => 'flb_like_modal_width' ,

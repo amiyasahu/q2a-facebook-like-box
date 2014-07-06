@@ -76,10 +76,10 @@
         qa_opt('flb_like_modal_width' , qa_post_text('flb_like_modal_width')) ;
         qa_opt('flb_modal_cookie_expire' , qa_post_text('flb_modal_cookie_expire')) ;
         qa_opt('flb_modal_header_main_text' , qa_post_text('flb_modal_header_main_text')) ;
-        qa_opt('flb_modal_header_sp_text' , qa_post_text('flb_modal_header_sp_text')) ;
         qa_opt('flb_modal_header_footer_text' , qa_post_text('flb_modal_header_footer_text')) ;
         qa_opt('flb_use_css_from_theme_file' , !!qa_post_text('flb_use_css_from_theme_file')) ;
-				qa_opt('flb_modal_costum_css' , !!qa_post_text('flb_modal_costum_css')) ;
+        qa_opt('flb_modal_costum_css' , !!qa_post_text('flb_modal_costum_css')) ;
+				qa_opt('flb_display_on_every_load' , !!qa_post_text('flb_display_on_every_load')) ;
 				
         $saved=true;
 			}
@@ -102,10 +102,10 @@
                 'flb_like_modal_width'         => 'flb_show_fb_like_modal' ,
                 'flb_modal_cookie_expire'      => 'flb_show_fb_like_modal' ,
                 'flb_modal_header_main_text'   => 'flb_show_fb_like_modal' ,
-                'flb_modal_header_sp_text'     => 'flb_show_fb_like_modal' ,
                 'flb_modal_header_footer_text' => 'flb_show_fb_like_modal' ,
                 'flb_use_css_from_theme_file'  => 'flb_show_fb_like_modal' ,
                 'flb_modal_costum_css'         => 'flb_show_fb_like_modal' ,
+                'flb_display_on_every_load'    => 'flb_show_fb_like_modal' ,
             ));
 			return array(
 				'ok' => $saved ? qa_lang('flb_like_box/settings_saved') : null,
@@ -208,6 +208,13 @@
                                     'value' => qa_opt('flb_use_css_from_theme_file'),
                                     'type'  => 'checkbox',
                     ),
+                    'flb_display_on_every_load' => array(
+                                    'id' => 'flb_display_on_every_load' ,
+                                    'label' => qa_lang('flb_like_box/m_display_on_every_load'),
+                                    'tags'  => 'name="flb_display_on_every_load"',
+                                    'value' => qa_opt('flb_display_on_every_load'),
+                                    'type'  => 'checkbox',
+                    ),
 
                     'flb_like_modal_colorscheme' => array(
                                     'id' => 'flb_like_modal_colorscheme' ,
@@ -296,14 +303,7 @@
                                     'tags'  => 'name="flb_modal_header_main_text"',
                                     'value' =>  qa_opt('flb_modal_header_main_text'),
                     ),
-                    'flb_modal_header_sp_text' => array(
-                                    'id' => 'flb_modal_header_sp_text' ,
-                                    'label' => qa_lang('flb_like_box/m_pop_up_sp_text'),
-                                    'type'  => 'textarea',
-                                    'rows'  => 4 ,
-                                    'tags'  => 'name="flb_modal_header_sp_text"',
-                                    'value' =>  qa_opt('flb_modal_header_sp_text'),
-                    ),
+                    
                    'flb_modal_header_footer_text' => array(
                                     'id' => 'flb_modal_header_footer_text' ,
                                     'label' => qa_lang('flb_like_box/m_pop_up_footer_text'),
@@ -337,7 +337,20 @@
 		{
             $has_error     = false ; 
             $error_message = "" ;
-            $widget_opt    = qa_get_options(array('facebook_app_id','flb_show_fb_like_box' ,'flb_show_fb_like_modal' ,'flb_page_url','flb_like_box_colorscheme','flb_like_box_header','flb_like_box_show_border','flb_like_box_show_faces','flb_like_box_data_stream','flb_like_box_height','flb_like_box_width'));
+            $widget_opt    = qa_get_options(array('facebook_app_id','flb_show_fb_like_box' , 
+                                                  'flb_show_fb_like_modal' ,'flb_page_url',
+                                                  'flb_like_box_colorscheme',
+                                                  'flb_like_box_header','flb_like_box_show_border',
+                                                  'flb_like_box_show_faces', 'flb_like_box_data_stream','flb_like_box_height',
+                                                  'flb_like_box_width' ,
+                                                  'flb_use_css_from_theme_file', 'flb_like_modal_colorscheme',
+                                                  'flb_like_modal_header', 'flb_like_modal_show_border',
+                                                  'flb_like_modal_show_faces', 'flb_like_modal_data_stream',
+                                                  'flb_like_modal_height', 'flb_like_modal_width',
+                                                  'flb_modal_cookie_expire', 'flb_modal_header_main_text',
+                                                  'flb_display_on_every_load', 'flb_modal_header_footer_text',
+                                                  'flb_modal_costum_css',
+                                                  ));
             
             $fb_page_url            = $this->get_fb_settings($widget_opt , 'url') ;  
             $show_fb_like_box       = $this->get_fb_settings($widget_opt , 'show_fb_like_box') ;  
@@ -427,10 +440,11 @@
         $width              =  $this->get_fb_settings($widget_opt , 'm_width') ; 
         $cookie_expire      =  $this->get_fb_settings($widget_opt , 'm_cookie_expire') ; 
         $header_main_text   =  @$widget_opt['flb_modal_header_main_text'] ;
-        $header_sec_text    =  @$widget_opt['flb_modal_header_sp_text'] ;
         $footer_text        =  @$widget_opt['flb_modal_header_footer_text'] ;
         $use_css_from_theme =  @$widget_opt['flb_use_css_from_theme_file'] ;
         $costum_css         =  @$widget_opt['flb_modal_costum_css'] ;
+        $show_on_every_load =  @$widget_opt['flb_display_on_every_load'] ;
+
         $css = "" ;
         //'//www.facebook.com/plugins/likebox.php?href=http://www.facebook.com/queryhandlers&width=290&height=275&colorscheme=light&show_faces=true&border_color=%23ffffff&stream=false&header=false'
         $data['href']         = $fb_page_url ;
@@ -455,9 +469,12 @@
         }
         if (!$use_css_from_theme) {
             // if not using css from  theme put these default styling 
-            $css = '#fb-back { display: none; background: rgba(0,0,0,0.8);   width: 100%; height: 100%; position: fixed; top: 0;   left: 0; z-index: 99999;} #fb-exit { width: 100%; height: 100%; } .fb-box-inner { width:300px; position: relative; display:block; padding: 20px 0px 0px; margin:0 auto; text-align:center; } #fb-close { cursor: pointer; position: absolute; top: 5px; right: 5px; font-size: 18px; font-weight:700; color: #000; z-index: 99999; display:inline-block; line-height: 18px; height:18px;width: 18px; } #fb-close:hover { color:#06c; } #fb-box { min-width: 340px; min-height: 360px; position: absolute; top: 50%; left: 50%; margin: -220px 0 0 -170px; -webkit-box-shadow: 0px 0px 16px #000; -moz-box-shadow: 0px 0px 16px #000; box-shadow: 0px 0px 16px #000; -webkit-border-radius: 8px;-moz-border-radius: 8px; border-radius: 8px; background: #fff; /* pop up box bg color */ border-bottom: 40px solid #f0f0f0;  /* pop up bottom border color/size */ } .fb-box-inner h3 { line-height: 1; margin:0 auto; text-transform:none;letter-spacing:none; font-size: 23px!important;  /* header size */ color:#06c!important; /* header color */ } .fb-box-inner p { line-height: 1; margin:0 auto 20px;text-transform:none;letter-spacing:none; font-size: 13px!important; /* header size  */ color:#333!important; /* text color */ } a.fb-link { position:relative;margin: 0 auto; display: block; text-align:center; color: #333; /* link color */ bottom: -30px; } #fb-box h3,#fb-box p, a.fb-link { max-width:290px; padding:0; }' ; 
+            $css = '#fb-back {display: none; background: rgba(0,0,0,0.8); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 99999; } #fb-exit {width: 100%; height: 100%; } .fb-box-inner {width:300px; position: relative; display:block; padding: 20px 0px 0px; margin:0 auto; text-align:center; } #fb-close {cursor: pointer; position: absolute; top: 10px; right: -10px; font-size: 18px; font-weight:700; color: #000; z-index: 99999; display:inline-block; line-height: 18px; height:18px; width: 18px; } #fb-close:hover {color:#06c; } #fb-box {min-width: 340px; min-height: 360px; position: absolute; top: 50%; left: 50%; margin: -220px 0 0 -170px; -webkit-box-shadow: 0px 0px 16px #000; -moz-box-shadow: 0px 0px 16px #000; box-shadow: 0px 0px 16px #000; -webkit-border-radius: 8px;- moz-border-radius: 8px; border-radius: 8px; background: #fff; /* pop up box bg color */ border-bottom: 40px solid #f0f0f0; /* pop up bottom border color/size */ } .fb-box-inner h3 {line-height: 1; margin:0 auto; text-transform:none; letter-spacing:none; font-size: 23px!important; /* header size */ color:#06c!important; /* header color */ } .fb-box-inner p {line-height: 1; margin:5px auto 5px; text-transform:none; letter-spacing:none; font-size: 13px!important; /* header size  */ color:#333!important; /* text color */ } a.fb-link {position:relative; margin: 0 auto; display: block; text-align:center; color: #333; /* link color */ bottom: -30px; } #fb-footer-txt {position:relative; margin: 0 auto; display: block; text-align:center; color: #333; /* link color */ bottom: -30px; } #fb-header-txt{margin-bottom: 10px ; } #fb-box h3,#fb-box p, a.fb-link { max-width:290px; padding:0; }' ; 
         }
-
+        if ($show_on_every_load) {
+            // set the cookie expire time to zero if $show on every load is enabled 
+            $cookie_expire = 0 ;
+        }
         $css .= $costum_css ;
 
 
@@ -474,15 +491,17 @@
                       <div id="fb-exit"> </div>
                       <div id='fb-box'>
                            <div class="fb-box-inner">
-                                 <div id="fb-close">X</div>
-                                  <!-- edit your popup header text here -->
-                                  <?php echo $header_main_text ?>
-                                  <!-- edit your supporting text here  -->
-                                  <?php echo $header_sec_text ?>
-                                  <!-- edit your fb name below -->
+                                 
+                                 <div id="fb-header-txt">
+                                      <div id="fb-close">&times;</div>
+                                      <?php echo $header_main_text ?>
+                                 </div>
+                                      <!-- IFrame starts here -->
                                        <iframe allowtransparency='true' frameborder='0' scrolling='no' src='<?php echo $src_str ; ?>'style='border: 0 none; overflow: hidden; width: 290px; height: 270px;text-align:center;margin:0 auto;'></iframe>
-                                  <!-- edit your supporting link here  -->
-                                  <a class="fb-link" href="//YOUR_BLOG_NAME.blogspot.com">Contact Us</a>  
+                                      <!-- IFrame Ends here  -->
+                                 <div id="fb-footer-txt">
+                                      <?php echo $footer_text ?>
+                                 </div>
                           </div>
                      </div>
                   </div>
@@ -505,7 +524,7 @@
                       });
                    }
                   //initiate popup function by setting up the cookie expiring time
-                  $.cookie('popup_fb', 'yes', { path: '/', expires: 0 });
+                  $.cookie('popup_fb', 'yes', { path: '/', expires: <?php echo $cookie_expire ?> });
                   });
                   //]]>
                   </script>

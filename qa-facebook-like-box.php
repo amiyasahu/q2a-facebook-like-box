@@ -55,7 +55,8 @@
 			$saved=false;
 			
 			if (qa_clicked('fb_like_box_save_btn')) {	
-				qa_opt('flb_page_url' , qa_post_text('flb_page_url')) ;
+        qa_opt('flb_page_url' , qa_post_text('flb_page_url')) ;
+				qa_opt('flb_show_fb_like_box' , !!qa_post_text('flb_show_fb_like_box')) ;
 				qa_opt('flb_like_box_colorscheme' , qa_post_text('flb_like_box_colorscheme')) ;
 				qa_opt('flb_like_box_header' , qa_post_text('flb_like_box_header')) ;
 				qa_opt('flb_like_box_show_border' , qa_post_text('flb_like_box_show_border')) ;
@@ -66,7 +67,15 @@
 				
 				$saved=true;
 			}
-			
+			 qa_set_display_rules($qa_content, array(
+                'flb_like_box_colorscheme' => 'flb_show_fb_like_box' ,
+                'flb_like_box_header' => 'flb_show_fb_like_box' ,
+                'flb_like_box_show_border' => 'flb_show_fb_like_box' ,
+                'flb_like_box_show_faces' => 'flb_show_fb_like_box' ,
+                'flb_like_box_data_stream' => 'flb_show_fb_like_box' ,
+                'flb_like_box_height' => 'flb_show_fb_like_box' ,
+                'flb_like_box_width' => 'flb_show_fb_like_box' ,
+            ));
 			return array(
 				'ok' => $saved ? qa_lang('flb_like_box/settings_saved') : null,
 				
@@ -78,7 +87,14 @@
                                     'value' =>  qa_opt('flb_page_url'),
                                     'note'  =>  qa_lang('flb_like_box/ur_fb_page_url_note'),
                     ),
+                    'flb_show_fb_like_box' => array(
+                                    'label' => qa_lang('flb_like_box/show_fb_like_box'),
+                                    'tags'  => 'name="flb_show_fb_like_box" id="flb_show_fb_like_box"',
+                                    'value' => qa_opt('flb_show_fb_like_box'),
+                                    'type'  => 'checkbox',
+                    ),
                     'flb_like_box_colorscheme' => array(
+                                    'id' => 'flb_like_box_colorscheme' ,
                                     'label' => qa_lang('flb_like_box/colorscheme_label'),
                                     'type'  => 'select',
                                     'tags'  => 'name="flb_like_box_colorscheme"',
@@ -89,6 +105,7 @@
                                     ),
                     ),
                    'flb_like_box_header' => array(
+                                    'id' => 'flb_like_box_header' ,
                                     'label' => qa_lang('flb_like_box/box_header_label'),
                                     'type'  => 'select',
                                     'tags'  => 'name="flb_like_box_header"',
@@ -99,6 +116,7 @@
                                     ),
                     ),
                    'flb_like_box_show_border' => array(
+                                    'id' => 'flb_like_box_show_border' ,
                                     'label' => qa_lang('flb_like_box/show_border_label'),
                                     'type'  => 'select',
                                     'tags'  => 'name="flb_like_box_show_border"',
@@ -109,6 +127,7 @@
                                     ),
                     ),
                     'flb_like_box_show_faces' => array(
+                                    'id' => 'flb_like_box_show_faces' ,
                                     'label' => qa_lang('flb_like_box/show_faces_label'),
                                     'type'  => 'select',
                                     'tags'  => 'name="flb_like_box_show_faces"',
@@ -119,6 +138,7 @@
                                     ),
                     ),
                    'flb_like_box_data_stream' => array(
+                                    'id' => 'flb_like_box_data_stream' ,
                         						'label' => qa_lang('flb_like_box/show_stream_label'),
                         						'type'  => 'select',
                         						'tags'  => 'name="flb_like_box_data_stream"',
@@ -130,12 +150,14 @@
                     ),
 
                     'flb_like_box_height' => array(
+                                    'id' => 'flb_like_box_height' ,
                                     'label' => qa_lang('flb_like_box/like_box_height_label'),
                                     'type'  => 'text',
                                     'tags'  => 'name="flb_like_box_height"',
                                     'value' => (!!qa_opt('flb_like_box_height')) ? qa_opt('flb_like_box_height') : 320 , /*this default value is to fit for Snow theme */
                     ),
                      'flb_like_box_width' => array(
+                                    'id' => 'flb_like_box_width' ,
                         						'label' => qa_lang('flb_like_box/like_box_width_label'),
                         						'type'  => 'text',
                         						'tags'  => 'name="flb_like_box_width"',
@@ -158,8 +180,11 @@
 		{
             $has_error     = false ; 
             $error_message = "" ;
-            $widget_opt    = qa_get_options(array('facebook_app_id' , 'flb_page_url','flb_like_box_colorscheme','flb_like_box_header','flb_like_box_show_border','flb_like_box_show_faces','flb_like_box_data_stream','flb_like_box_height','flb_like_box_width'));
-            $fb_page_url   = $this->get_fb_settings($widget_opt , 'url') ;	
+            $widget_opt    = qa_get_options(array('facebook_app_id','flb_show_fb_like_box' ,'flb_show_fb_like_modal' ,'flb_page_url','flb_like_box_colorscheme','flb_like_box_header','flb_like_box_show_border','flb_like_box_show_faces','flb_like_box_data_stream','flb_like_box_height','flb_like_box_width'));
+            
+            $fb_page_url            = $this->get_fb_settings($widget_opt , 'url') ;  
+            $show_fb_like_box       = $this->get_fb_settings($widget_opt , 'show_fb_like_box') ;  
+            $show_fb_like_box_modal = $this->get_fb_settings($widget_opt , 'show_fb_like_modal') ;	
             
             if (empty($fb_page_url)) {
                   $has_error = true ;
@@ -167,15 +192,17 @@
             }
 
             if (!$has_error) {
-                $themeobject->output($this->get_facebook_like_box($widget_opt));
-            }else {
+                if ($show_fb_like_box) {
+                   $themeobject->output($this->get_facebook_like_box($widget_opt));
+                }
+            } else {
                $themeobject->output('<div class="qa-sidebar error" style="color:red;">'.$error_message.'</div>');
             }
             
 		}
     function get_facebook_like_box($widget_opt)
     {
-        // get the other settings 
+        // get the facebook like box settings 
         $facebook_app_id =  $this->get_fb_settings($widget_opt , 'facebook_app_id') ; 
         $fb_page_url     =  $this->get_fb_settings($widget_opt , 'url') ;
         $colorscheme     =  $this->get_fb_settings($widget_opt , 'colorscheme') ; 
@@ -238,6 +265,14 @@
                          $value = isset($widget_opt['facebook_app_id']) && !empty($widget_opt['facebook_app_id']) ? $widget_opt['facebook_app_id'] : "" ;
                          break;
 
+                   case 'show_fb_like_box':
+                         $value = isset($widget_opt['flb_show_fb_like_box']) && !empty($widget_opt['flb_show_fb_like_box']) ? !!$widget_opt['flb_show_fb_like_box'] : false ;
+                         break;
+
+                   case 'show_fb_like_modal':
+                         $value = isset($widget_opt['flb_show_fb_like_modal']) && !empty($widget_opt['flb_show_fb_like_modal']) ? !!$widget_opt['flb_show_fb_like_modal'] : false ;
+                         break;
+
                    case 'colorscheme':
                          $value         = isset($widget_opt['flb_like_box_colorscheme']) && !empty($widget_opt['flb_like_box_colorscheme']) ? $widget_opt['flb_like_box_colorscheme'] : "" ;
                          $allowed_value = array('light' , 'dark'); /*allow only these values*/
@@ -245,6 +280,7 @@
                                $value = "light" ;
                          }
                          break;
+
                    case 'header':
                          $value         = isset($widget_opt['flb_like_box_header']) && !empty($widget_opt['flb_like_box_header']) ? $widget_opt['flb_like_box_header'] : "" ;
                          $allowed_value = array('true' , 'false'); /*allow only these values*/
@@ -252,6 +288,7 @@
                                $value = "true" ;
                          }
                          break;
+
                    case 'show_border':
                          $value         = isset($widget_opt['flb_like_box_show_border']) && !empty($widget_opt['flb_like_box_show_border']) ? $widget_opt['flb_like_box_show_border'] : "" ;
                          $allowed_value = array('true' , 'false'); /*allow only these values*/
@@ -259,6 +296,7 @@
                                $value = "true" ;
                          }
                          break;
+
                    case 'show_faces':
                          $value         = isset($widget_opt['flb_like_box_show_faces']) && !empty($widget_opt['flb_like_box_show_faces']) ? $widget_opt['flb_like_box_show_faces'] : "" ;
                          $allowed_value = array('true' , 'false'); /*allow only these values*/
@@ -266,6 +304,7 @@
                                $value = "true" ;
                          }
                          break;
+
                    case 'stream':
                          $value         = isset($widget_opt['flb_like_box_data_stream']) && !empty($widget_opt['flb_like_box_data_stream']) ? $widget_opt['flb_like_box_data_stream'] : "" ;
                          $allowed_value = array('true' , 'false'); /*allow only these values*/
@@ -273,6 +312,7 @@
                                $value = "false" ;
                          }
                          break;
+
                    case 'height':
                          $value = isset($widget_opt['flb_like_box_height']) && !empty($widget_opt['flb_like_box_height']) ? $widget_opt['flb_like_box_height'] : "" ;
                          if ($this->get_fb_settings($widget_opt , "data_stream") && $this->get_fb_settings($widget_opt , "show_faces")   ) {
@@ -290,6 +330,7 @@
                                $value = $min_height ;
                          }
                          break;
+
                    case 'width':
                          $value     = isset($widget_opt['flb_like_box_width']) && !empty($widget_opt['flb_like_box_width']) ? $widget_opt['flb_like_box_width'] : "" ;
                          $min_width = 190 ; /*allow only these values*/

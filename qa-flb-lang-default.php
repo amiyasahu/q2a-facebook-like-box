@@ -41,7 +41,8 @@ return array(
 	"like_box_width_label"  => "Width: The width of the plugin in pixels. Minimum is 292. (Recomended is 360 px for best results)" ,
 	"ur_fb_page_url"        => "Page Url : The relative URL of the Facebook Page that will be liked. This is a required setting." ,
 	"ur_fb_page_url_note"   => "( If your facebook page url is <strong>https://www.facebook.com/queryhandlers</strong> , then only give <strong>queryhandlers</strong> in the text box )" ,
-	"fb_like_box"           => "Faceboo Like Box" ,
+	"fb_like_box"           => "Facebook Like Box" ,
+	"show_fb_like_box"           => "Show Facebook Like Box" ,
 	"settings_saved"        => "Faceboo Like Box settings has been saved " ,
 	"plz_provide_fb_url"    => "Please provide your facebook page url to display on website " ,
 	);

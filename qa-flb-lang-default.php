@@ -32,17 +32,37 @@ if (!defined('QA_VERSION')) {
 }
 
 return array(
-	"colorscheme_label"     => "Color Scheme : The color scheme used by the plugin" ,
-	"box_header_label"      => "Header: Specifies whether to display the Facebook header at the top of the plugin." ,
-	"show_border_label"     => "Border: Specifies whether or not to show a border around the plugin." ,
-	"show_faces_label"      => "Show Faces: Specifies whether to display profile photos of people who like the page." ,
-	"show_stream_label"     => "Show Stream: Specifies whether to display a stream of the latest posts by the Page." ,
-	"like_box_height_label" => "Height: The height of the plugin in pixels .(Recomended is 320 px for best results) " ,
-	"like_box_width_label"  => "Width: The width of the plugin in pixels. Minimum is 292. (Recomended is 360 px for best results)" ,
+	// languages for the facebook like modal 
 	"ur_fb_page_url"        => "Page Url : The relative URL of the Facebook Page that will be liked. This is a required setting." ,
 	"ur_fb_page_url_note"   => "( If your facebook page url is <strong>https://www.facebook.com/queryhandlers</strong> , then only give <strong>queryhandlers</strong> in the text box )" ,
-	"fb_like_box"           => "Facebook Like Box" ,
-	"show_fb_like_box"           => "Show Facebook Like Box" ,
 	"settings_saved"        => "Faceboo Like Box settings has been saved " ,
 	"plz_provide_fb_url"    => "Please provide your facebook page url to display on website " ,
+	// languages for the facebook like box 
+	"b_colorscheme_label"     => "Color Scheme : The color scheme used by the Like Box " ,
+	"b_box_header_label"      => "Display the Facebook header at the top of the box " ,
+	"b_show_border_label"     => "Show a border around the box " ,
+	"b_show_faces_label"      => "Display profile photos of people who like the page " ,
+	"b_show_stream_label"     => "Display a stream of the latest posts by the Page " ,
+	"b_like_box_height_label" => "Height of the box in pixels " ,
+	"b_like_box_width_label"  => "Width of the box in pixels " ,
+	"b_show_fb_like_box"      => "Show Facebook Like Box " ,
+	// languages for the facebook like modal 
+	"m_colorscheme_label"       => "Color Scheme : The color scheme used by the popup box " ,
+	"m_box_header_label"        => "Display the Facebook header at the top of popup box " ,
+	"m_show_border_label"       => "Show a border around the popup box " ,
+	"m_show_faces_label"        => "Display profile photos of people who like the page " ,
+	"m_show_stream_label"       => "Display a stream of the latest posts by the Page " ,
+	"m_like_modal_height_label" => "Height of the popup box in pixels " ,
+	"m_like_modal_width_label"  => "Width of the popup box in pixels " ,
+	"m_like_modal_cookie_expire"  => "Lifetime of the cookie (in days)" ,
+	"m_like_modal_cookie_expire_note"  => "( After this modal will be displayed again to the user ) " ,
+	"m_pop_up_header_text"  => "Header Text to be displayed for the popup ( HTML is allowed )" ,
+	"m_pop_up_sp_text"  => "Supporting Text to be displayed for the popup ( HTML is allowed )" ,
+	"m_pop_up_footer_text"  => "Footer Text to be displayed for the popup ( HTML is allowed )" ,
+	"m_pop_up_footer_Link"  => "Footer link to be displayed for the popup ( HTML is allowed )" ,
+	"m_show_fb_like_modal"      => "Show Facebook Like Modal when user visits first time " ,
+	"m_use_css_from_theme_file"      => "Use styling from the Theme css file " ,
+	"m_costum_css"      => "Additional CSS properties according to your chsoice " ,
+	"m_costum_css_note"      => "Donot wrap this styles with <style>...</style> tags  " ,
+
 	);

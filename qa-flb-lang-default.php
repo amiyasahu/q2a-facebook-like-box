@@ -35,7 +35,7 @@ return array(
 	// languages for the facebook like modal 
 	"ur_fb_page_url"        => "Page Url : The relative URL of the Facebook Page that will be liked. This is a required setting." ,
 	"ur_fb_page_url_note"   => "( If your facebook page url is <strong>https://www.facebook.com/queryhandlers</strong> , then only give <strong>queryhandlers</strong> in the text box )" ,
-	"settings_saved"        => "Faceboo Like Box settings has been saved " ,
+	"settings_saved"        => "Facebook Like Box settings has been saved " ,
 	"plz_provide_fb_url"    => "Please provide your facebook page url to display on website " ,
 	// languages for the facebook like box 
 	"b_colorscheme_label"     => "Color Scheme : The color scheme used by the Like Box " ,
@@ -65,4 +65,5 @@ return array(
 	"m_costum_css"                    => "Additional CSS properties according to your chsoice " ,
 	"m_costum_css_note"               => "Do not wrap this styles with <style>...</style> tags  " ,
 	"m_display_on_every_load"         => "Display popup on every page load ( Only required for debugging mode . Not recomended on live site )  " ,
+	"m_like_modal_delay"              => "Show the popup after ( time in seconds )" ,
 	);

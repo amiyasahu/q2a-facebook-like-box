@@ -79,7 +79,8 @@
         qa_opt('flb_modal_header_footer_text' , qa_post_text('flb_modal_header_footer_text')) ;
         qa_opt('flb_use_css_from_theme_file' , !!qa_post_text('flb_use_css_from_theme_file')) ;
         qa_opt('flb_modal_costum_css' , !!qa_post_text('flb_modal_costum_css')) ;
-				qa_opt('flb_display_on_every_load' , !!qa_post_text('flb_display_on_every_load')) ;
+        qa_opt('flb_display_on_every_load' , !!qa_post_text('flb_display_on_every_load')) ;
+				qa_opt('flb_modal_delay' , (int)qa_post_text('flb_modal_delay')) ;
 				
         $saved=true;
 			}
@@ -106,6 +107,7 @@
                 'flb_use_css_from_theme_file'  => 'flb_show_fb_like_modal' ,
                 'flb_modal_costum_css'         => 'flb_show_fb_like_modal' ,
                 'flb_display_on_every_load'    => 'flb_show_fb_like_modal' ,
+                'flb_modal_delay'    => 'flb_show_fb_like_modal' ,
             ));
 			return array(
 				'ok' => $saved ? qa_lang('flb_like_box/settings_saved') : null,
@@ -286,6 +288,14 @@
                                     'tags'  => 'name="flb_like_modal_width"',
                                     'value' => (!!qa_opt('flb_like_modal_width')) ? qa_opt('flb_like_modal_width') : 200 , /*this default value is to fit for Snow theme */
                     ),
+                   'flb_modal_delay' => array(
+                                    'id' => 'flb_modal_delay' ,
+                                    'label' => qa_lang('flb_like_box/m_like_modal_delay'),
+                                    'type'  => 'text',
+                                    'tags'  => 'name="flb_modal_delay"',
+                                    'value' =>  qa_opt('flb_modal_delay'),
+                                    'note'  =>  qa_lang('flb_like_box/m_like_modal_cookie_expire_note'),
+                    ),
 
                     'flb_modal_cookie_expire' => array(
                                     'id' => 'flb_modal_cookie_expire' ,
@@ -439,6 +449,7 @@
         $height             =  $this->get_fb_settings($widget_opt , 'm_height') ; 
         $width              =  $this->get_fb_settings($widget_opt , 'm_width') ; 
         $cookie_expire      =  $this->get_fb_settings($widget_opt , 'm_cookie_expire') ; 
+        $delay              =  $this->get_fb_settings($widget_opt , 'm_delay') ; 
         $header_main_text   =  @$widget_opt['flb_modal_header_main_text'] ;
         $footer_text        =  @$widget_opt['flb_modal_header_footer_text'] ;
         $use_css_from_theme =  @$widget_opt['flb_use_css_from_theme_file'] ;
@@ -518,7 +529,7 @@
                   // the pop up actions
                   $(function ($) {
                     if ($.cookie('popup_fb') != 'yes') {
-                      $('#fb-back').delay(400).fadeIn("slow"); // options slow or fast
+                      $('#fb-back').delay(<?php echo $delay; ?>).fadeIn("slow"); // options slow or fast
                       $('#fb-close, #fb-exit').click(function () {
                         $('#fb-back').stop().fadeOut("slow"); // options slow or fast
                       });
@@ -692,6 +703,15 @@
                              $value = $min_width ;
                        }
                        break;
+                 case 'm_delay':
+                       $value     = isset($widget_opt['flb_modal_delay']) && !empty($widget_opt['flb_modal_delay']) ? $widget_opt['flb_modal_delay'] : 10 /*10 seconds by default*/ ;
+                       $min_delay = 5 ; /*allow only these values*/
+                       if (!$value || $value < $min_delay) {
+                             $value = $min_delay ;
+                       }
+                       $value = $value * 1000 ; /*make it to milli seconds */
+                       break;
+
                   case 'm_cookie_expire':
                        $value     = isset($widget_opt['flb_modal_cookie_expire']) && !empty($widget_opt['flb_modal_cookie_expire']) ? $widget_opt['flb_modal_cookie_expire'] : 30 /*by default 30*/ ;
                        break;

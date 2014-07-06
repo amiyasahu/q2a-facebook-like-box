@@ -78,7 +78,7 @@
         qa_opt('flb_modal_header_main_text' , qa_post_text('flb_modal_header_main_text')) ;
         qa_opt('flb_modal_header_sp_text' , qa_post_text('flb_modal_header_sp_text')) ;
         qa_opt('flb_modal_header_footer_text' , qa_post_text('flb_modal_header_footer_text')) ;
-        qa_opt('flb_use_css_from_theme_file' , qa_post_text('flb_use_css_from_theme_file')) ;
+        qa_opt('flb_use_css_from_theme_file' , !!qa_post_text('flb_use_css_from_theme_file')) ;
 				qa_opt('flb_modal_costum_css' , !!qa_post_text('flb_modal_costum_css')) ;
 				
         $saved=true;
@@ -352,6 +352,10 @@
                 if ($show_fb_like_box) {
                    $themeobject->output($this->get_facebook_like_box($widget_opt));
                 }
+                if ($show_fb_like_box_modal) {
+                   $themeobject->output($this->get_facebook_like_modal($widget_opt));
+                }
+
             } else {
                $themeobject->output('<div class="qa-sidebar error" style="color:red;">'.$error_message.'</div>');
             }
@@ -412,50 +416,101 @@
     function get_facebook_like_modal($widget_opt)
     {
         // get the facebook like box settings 
-        $facebook_app_id =  $this->get_fb_settings($widget_opt , 'facebook_app_id') ; 
-        $fb_page_url     =  $this->get_fb_settings($widget_opt , 'm_url') ;
-        $colorscheme     =  $this->get_fb_settings($widget_opt , 'm_colorscheme') ; 
-        $header          =  $this->get_fb_settings($widget_opt , 'm_header') ; 
-        $show_border     =  $this->get_fb_settings($widget_opt , 'm_show_border') ; 
-        $show_faces      =  $this->get_fb_settings($widget_opt , 'm_show_faces') ; 
-        $stream          =  $this->get_fb_settings($widget_opt , 'm_stream') ; 
-        $height          =  $this->get_fb_settings($widget_opt , 'm_height') ; 
-        $width           =  $this->get_fb_settings($widget_opt , 'm_width') ; 
+        $facebook_app_id    =  $this->get_fb_settings($widget_opt , 'facebook_app_id') ; 
+        $fb_page_url        =  $this->get_fb_settings($widget_opt , 'm_url') ;
+        $colorscheme        =  $this->get_fb_settings($widget_opt , 'm_colorscheme') ; 
+        $header             =  $this->get_fb_settings($widget_opt , 'm_header') ; 
+        $show_border        =  $this->get_fb_settings($widget_opt , 'm_show_border') ; 
+        $show_faces         =  $this->get_fb_settings($widget_opt , 'm_show_faces') ; 
+        $stream             =  $this->get_fb_settings($widget_opt , 'm_stream') ; 
+        $height             =  $this->get_fb_settings($widget_opt , 'm_height') ; 
+        $width              =  $this->get_fb_settings($widget_opt , 'm_width') ; 
+        $cookie_expire      =  $this->get_fb_settings($widget_opt , 'm_cookie_expire') ; 
+        $header_main_text   =  @$widget_opt['flb_modal_header_main_text'] ;
+        $header_sec_text    =  @$widget_opt['flb_modal_header_sp_text'] ;
+        $footer_text        =  @$widget_opt['flb_modal_header_footer_text'] ;
+        $use_css_from_theme =  @$widget_opt['flb_use_css_from_theme_file'] ;
+        $costum_css         =  @$widget_opt['flb_modal_costum_css'] ;
+        $css = "" ;
         //'//www.facebook.com/plugins/likebox.php?href=http://www.facebook.com/queryhandlers&width=290&height=275&colorscheme=light&show_faces=true&border_color=%23ffffff&stream=false&header=false'
-        $data['href']        = 'href="'.$fb_page_url.'"' ;
-        $data['force_wall']  = 'force-wall="false"' ;
-        $data['colorscheme'] = 'colorscheme="'.$colorscheme.'"' ;
-        $data['header']      = 'header="'.$header.'"' ;
-        $data['show_border'] = 'show-border="'.$show_border.'"' ;
-        $data['show_faces']  = 'show-faces="'.$show_faces.'"' ;
-        $data['stream']      = 'stream="'.$stream.'"' ;
-        $data['height']      = 'height="'.$height.'"' ;
-        $data['width']       = 'width="'.$width.'"' ;
+        $data['href']         = $fb_page_url ;
+        $data['force_wall']   = 'force_wall=false' ;
+        $data['colorscheme']  = 'colorscheme='.$colorscheme.'' ;
+        $data['header']       = 'header='.$header.'' ;
+        $data['show_border']  = 'show_border='.$show_border.'' ;
+        $data['show_faces']   = 'show_faces='.$show_faces.'' ;
+        $data['stream']       = 'stream='.$stream.'' ;
+        $data['height']       = 'height='.$height.'' ;
+        $data['width']        = 'width='.$width.'' ;
+        $data['border_color'] = 'border_color=%23ffffff' ;
         
-        $data_str        = implode(' ', $data ) ;
-        $fb_like_box     = '<div class="fb-like-box" '.$data_str.'> </div>'  ;
+        $src_str        = implode('&', $data ) ;
+        
         $facebook_app_id = qa_opt('facebook_app_id');
+
 
         if (!$facebook_app_id) {
             // if the facebook app id is not set set it with app id given by the Facebook 
             $facebook_app_id = "576492145800361" ; 
         }
+        if (!$use_css_from_theme) {
+            // if not using css from  theme put these default styling 
+            $css = '#fb-back { display: none; background: rgba(0,0,0,0.8);   width: 100%; height: 100%; position: fixed; top: 0;   left: 0; z-index: 99999;} #fb-exit { width: 100%; height: 100%; } .fb-box-inner { width:300px; position: relative; display:block; padding: 20px 0px 0px; margin:0 auto; text-align:center; } #fb-close { cursor: pointer; position: absolute; top: 5px; right: 5px; font-size: 18px; font-weight:700; color: #000; z-index: 99999; display:inline-block; line-height: 18px; height:18px;width: 18px; } #fb-close:hover { color:#06c; } #fb-box { min-width: 340px; min-height: 360px; position: absolute; top: 50%; left: 50%; margin: -220px 0 0 -170px; -webkit-box-shadow: 0px 0px 16px #000; -moz-box-shadow: 0px 0px 16px #000; box-shadow: 0px 0px 16px #000; -webkit-border-radius: 8px;-moz-border-radius: 8px; border-radius: 8px; background: #fff; /* pop up box bg color */ border-bottom: 40px solid #f0f0f0;  /* pop up bottom border color/size */ } .fb-box-inner h3 { line-height: 1; margin:0 auto; text-transform:none;letter-spacing:none; font-size: 23px!important;  /* header size */ color:#06c!important; /* header color */ } .fb-box-inner p { line-height: 1; margin:0 auto 20px;text-transform:none;letter-spacing:none; font-size: 13px!important; /* header size  */ color:#333!important; /* text color */ } a.fb-link { position:relative;margin: 0 auto; display: block; text-align:center; color: #333; /* link color */ bottom: -30px; } #fb-box h3,#fb-box p, a.fb-link { max-width:290px; padding:0; }' ; 
+        }
+
+        $css .= $costum_css ;
+
 
         ob_start();
             ?>
-              <!--  widget start  -->
-                  <div id="fb-root"></div>
-                  <script>(function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo $facebook_app_id; ?>&version=v2.0";
-                    fjs.parentNode.insertBefore(js, fjs);
-                  }(document, 'script', 'facebook-jssdk'));</script>
-                  <div class="fb-like-box clearfix">
-                    <?php echo $fb_like_box ?>
+              <!--  Facebook Like Modal start  -->
+                  <!-- popup box stylings -->
+                  <style type="text/css">
+                          <?php echo $css ;?>
+                  </style>
+
+                  <!-- facebook plugin -->
+                  <div id='fb-back'>
+                      <div id="fb-exit"> </div>
+                      <div id='fb-box'>
+                           <div class="fb-box-inner">
+                                 <div id="fb-close">X</div>
+                                  <!-- edit your popup header text here -->
+                                  <?php echo $header_main_text ?>
+                                  <!-- edit your supporting text here  -->
+                                  <?php echo $header_sec_text ?>
+                                  <!-- edit your fb name below -->
+                                       <iframe allowtransparency='true' frameborder='0' scrolling='no' src='<?php echo $src_str ; ?>'style='border: 0 none; overflow: hidden; width: 290px; height: 270px;text-align:center;margin:0 auto;'></iframe>
+                                  <!-- edit your supporting link here  -->
+                                  <a class="fb-link" href="//YOUR_BLOG_NAME.blogspot.com">Contact Us</a>  
+                          </div>
+                     </div>
                   </div>
-              <!--  widget ends  -->
+                  <!-- popup plug-in snippet  -->
+                  <script type='text/javascript'>
+                  //<![CDATA[
+                  //grab user's browser info and calculates/saves first visit
+                  if (typeof(jQuery.cookie)=="undefined") {
+                    jQuery.cookie = function (key, value, options) { if (arguments.length > 1 && String(value) !== "[object Object]") { options = jQuery.extend({}, options); if (value === null || value === undefined) { options.expires = -1; }
+                    if (typeof options.expires === 'number') { var days = options.expires,  t = options.expires = new Date();  t.setDate(t.getDate() + days); } value = String(value); return (document.cookie = [encodeURIComponent(key), '=', options.raw ? value : encodeURIComponent(value), options.expires ? '; expires=' + options.expires.toUTCString() : '', options.path ? '; path=' + options.path : '', options.domain ? '; domain=' + options.domain : '', options.secure ? '; secure' : ''].join('')); }
+                    options = value || {}; var result, decode = options.raw ? function (s) { return s; } : decodeURIComponent; return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? decode(result[1]) : null; };
+                  };
+
+                  // the pop up actions
+                  $(function ($) {
+                    if ($.cookie('popup_fb') != 'yes') {
+                      $('#fb-back').delay(400).fadeIn("slow"); // options slow or fast
+                      $('#fb-close, #fb-exit').click(function () {
+                        $('#fb-back').stop().fadeOut("slow"); // options slow or fast
+                      });
+                   }
+                  //initiate popup function by setting up the cookie expiring time
+                  $.cookie('popup_fb', 'yes', { path: '/', expires: 0 });
+                  });
+                  //]]>
+                  </script>
+                  <!-- facebook like box ends -->
+              <!--  Facebook Like Modal ends  -->
             <?php
 
         return ob_get_clean();
@@ -548,70 +603,62 @@
                        }
                        break;
 
-                 case 'url':
-                 case 'href':
-                       $value = isset($widget_opt['flb_page_url']) && !empty($widget_opt['flb_page_url']) ? 'https://www.facebook.com/'.$widget_opt['flb_page_url'] : "" ;
+                 case 'm_url':
+                 case 'm_href':
+                       $value = isset($widget_opt['flb_page_url']) && !empty($widget_opt['flb_page_url']) ? '//www.facebook.com/plugins/likebox.php?href=http://www.facebook.com/'.$widget_opt['flb_page_url'] : "" ;
                        break;
-                 
-                 case 'show_fb_like_box':
-                       $value = isset($widget_opt['flb_show_fb_like_box']) && !empty($widget_opt['flb_show_fb_like_box']) ? !!$widget_opt['flb_show_fb_like_box'] : false ;
-                       break;
-
-                 case 'show_fb_like_modal':
-                       $value = isset($widget_opt['flb_show_fb_like_modal']) && !empty($widget_opt['flb_show_fb_like_modal']) ? !!$widget_opt['flb_show_fb_like_modal'] : false ;
-                       break;
-
-                 case 'colorscheme':
-                       $value         = isset($widget_opt['flb_like_box_colorscheme']) && !empty($widget_opt['flb_like_box_colorscheme']) ? $widget_opt['flb_like_box_colorscheme'] : "" ;
+                
+                 case 'm_colorscheme':
+                       $value         = isset($widget_opt['flb_like_modal_colorscheme']) && !empty($widget_opt['flb_like_modal_colorscheme']) ? $widget_opt['flb_like_modal_colorscheme'] : "" ;
                        $allowed_value = array('light' , 'dark'); /*allow only these values*/
                        if (!$value || !in_array($value , $allowed_value )) {
                              $value = "light" ;
                        }
                        break;
 
-                 case 'header':
-                       $value         = isset($widget_opt['flb_like_box_header']) && !empty($widget_opt['flb_like_box_header']) ? $widget_opt['flb_like_box_header'] : "" ;
+                 case 'm_header':
+                       $value         = isset($widget_opt['flb_like_modal_header']) && !empty($widget_opt['flb_like_modal_header']) ? $widget_opt['flb_like_modal_header'] : "" ;
                        $allowed_value = array('true' , 'false'); /*allow only these values*/
                        if (!$value || !in_array($value , $allowed_value )) {
                              $value = "true" ;
                        }
                        break;
 
-                 case 'show_border':
-                       $value         = isset($widget_opt['flb_like_box_show_border']) && !empty($widget_opt['flb_like_box_show_border']) ? $widget_opt['flb_like_box_show_border'] : "" ;
+                 case 'm_show_border':
+                       $value         = isset($widget_opt['flb_like_modal_show_border']) && !empty($widget_opt['flb_like_modal_show_border']) ? $widget_opt['flb_like_modal_show_border'] : "" ;
                        $allowed_value = array('true' , 'false'); /*allow only these values*/
                        if (!$value || !in_array($value , $allowed_value )) {
                              $value = "true" ;
                        }
                        break;
 
-                 case 'show_faces':
-                       $value         = isset($widget_opt['flb_like_box_show_faces']) && !empty($widget_opt['flb_like_box_show_faces']) ? $widget_opt['flb_like_box_show_faces'] : "" ;
+                 case 'm_show_faces':
+                       $value         = isset($widget_opt['flb_like_modal_show_faces']) && !empty($widget_opt['flb_like_modal_show_faces']) ? $widget_opt['flb_like_modal_show_faces'] : "" ;
                        $allowed_value = array('true' , 'false'); /*allow only these values*/
                        if (!$value || !in_array($value , $allowed_value )) {
                              $value = "true" ;
                        }
                        break;
 
-                 case 'stream':
-                       $value         = isset($widget_opt['flb_like_box_data_stream']) && !empty($widget_opt['flb_like_box_data_stream']) ? $widget_opt['flb_like_box_data_stream'] : "" ;
+                 case 'm_stream':
+                       $value         = isset($widget_opt['flb_like_modal_data_stream']) && !empty($widget_opt['flb_like_modal_data_stream']) ? $widget_opt['flb_like_modal_data_stream'] : "" ;
                        $allowed_value = array('true' , 'false'); /*allow only these values*/
                        if (!$value || !in_array($value , $allowed_value )) {
                              $value = "false" ;
                        }
                        break;
 
-                 case 'height':
-                       $value = isset($widget_opt['flb_like_box_height']) && !empty($widget_opt['flb_like_box_height']) ? $widget_opt['flb_like_box_height'] : "" ;
+                 case 'm_height':
+                       $value = isset($widget_opt['flb_like_modal_height']) && !empty($widget_opt['flb_like_modal_height']) ? $widget_opt['flb_like_modal_height'] : "" ;
                        if ($this->get_fb_settings($widget_opt , "data_stream") && $this->get_fb_settings($widget_opt , "show_faces")   ) {
                              // if both are true min height is 556px
                              $min_height = 556 ;
                        }elseif (!$this->get_fb_settings($widget_opt , "data_stream") && !$this->get_fb_settings($widget_opt , "show_faces") ) {
                              // if both are false min height is 63px
-                             $min_height = 63 ;
+                             $min_height = 175 ;
                        }else {
                              // otherwise
-                             $min_height = 300 ;
+                             $min_height = 275 ;
                        }
 
                        if (!$value || $value < $min_height ) {
@@ -619,14 +666,16 @@
                        }
                        break;
 
-                 case 'width':
-                       $value     = isset($widget_opt['flb_like_box_width']) && !empty($widget_opt['flb_like_box_width']) ? $widget_opt['flb_like_box_width'] : "" ;
-                       $min_width = 190 ; /*allow only these values*/
+                 case 'm_width':
+                       $value     = isset($widget_opt['flb_like_modal_width']) && !empty($widget_opt['flb_like_modal_width']) ? $widget_opt['flb_like_modal_width'] : "" ;
+                       $min_width = 300 ; /*allow only these values*/
                        if (!$value || $value < $min_width) {
                              $value = $min_width ;
                        }
                        break;
-
+                  case 'm_cookie_expire':
+                       $value     = isset($widget_opt['flb_modal_cookie_expire']) && !empty($widget_opt['flb_modal_cookie_expire']) ? $widget_opt['flb_modal_cookie_expire'] : 30 /*by default 30*/ ;
+                       break;
                  default:
                        break;
            }

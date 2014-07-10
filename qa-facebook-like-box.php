@@ -55,34 +55,34 @@
 			$saved=false;
 			
 			if (qa_clicked('fb_like_box_save_btn')) {	
-        qa_opt('flb_page_url' , qa_post_text('flb_page_url')) ;
-        // for like box
+                                qa_opt('flb_page_url' , qa_post_text('flb_page_url')) ;
+        			// for like box
 				qa_opt('flb_show_fb_like_box' ,     !!qa_post_text('flb_show_fb_like_box')) ;
-        qa_opt('flb_like_box_colorscheme' , qa_post_text('flb_like_box_colorscheme')) ;
-        qa_opt('flb_like_box_header' ,      qa_post_text('flb_like_box_header')) ;
-        qa_opt('flb_like_box_show_border' , qa_post_text('flb_like_box_show_border')) ;
-        qa_opt('flb_like_box_show_faces' ,  qa_post_text('flb_like_box_show_faces')) ;
-        qa_opt('flb_like_box_data_stream' , qa_post_text('flb_like_box_data_stream')) ;
-        qa_opt('flb_like_box_height' ,      qa_post_text('flb_like_box_height')) ;
-        qa_opt('flb_like_box_width' ,       qa_post_text('flb_like_box_width')) ;
-        // for modal 
-        qa_opt('flb_show_fb_like_modal' , !!qa_post_text('flb_show_fb_like_modal')) ;
+			        qa_opt('flb_like_box_colorscheme' , qa_post_text('flb_like_box_colorscheme')) ;
+        			qa_opt('flb_like_box_header' ,      qa_post_text('flb_like_box_header')) ;
+        			qa_opt('flb_like_box_show_border' , qa_post_text('flb_like_box_show_border')) ;
+        			qa_opt('flb_like_box_show_faces' ,  qa_post_text('flb_like_box_show_faces')) ;
+			 	qa_opt('flb_like_box_data_stream' , qa_post_text('flb_like_box_data_stream')) ;
+        			qa_opt('flb_like_box_height' ,      qa_post_text('flb_like_box_height')) ;
+			 	qa_opt('flb_like_box_width' ,       qa_post_text('flb_like_box_width')) ;
+        			// for modal 
+				qa_opt('flb_show_fb_like_modal' , !!qa_post_text('flb_show_fb_like_modal')) ;
 				qa_opt('flb_like_modal_colorscheme' , qa_post_text('flb_like_modal_colorscheme')) ;
 				qa_opt('flb_like_modal_header' , qa_post_text('flb_like_modal_header')) ;
 				qa_opt('flb_like_modal_show_border' , qa_post_text('flb_like_modal_show_border')) ;
 				qa_opt('flb_like_modal_show_faces' , qa_post_text('flb_like_modal_show_faces')) ;
 				qa_opt('flb_like_modal_data_stream' , qa_post_text('flb_like_modal_data_stream')) ;
 				qa_opt('flb_like_modal_height' , qa_post_text('flb_like_modal_height')) ;
-        qa_opt('flb_like_modal_width' , qa_post_text('flb_like_modal_width')) ;
-        qa_opt('flb_modal_cookie_expire' , qa_post_text('flb_modal_cookie_expire')) ;
-        qa_opt('flb_modal_header_main_text' , qa_post_text('flb_modal_header_main_text')) ;
-        qa_opt('flb_modal_header_footer_text' , qa_post_text('flb_modal_header_footer_text')) ;
-        qa_opt('flb_use_css_from_theme_file' , !!qa_post_text('flb_use_css_from_theme_file')) ;
-        qa_opt('flb_modal_costum_css' , !!qa_post_text('flb_modal_costum_css')) ;
-        qa_opt('flb_display_on_every_load' , !!qa_post_text('flb_display_on_every_load')) ;
+				qa_opt('flb_like_modal_width' , qa_post_text('flb_like_modal_width')) ;
+				qa_opt('flb_modal_cookie_expire' , qa_post_text('flb_modal_cookie_expire')) ;
+        			qa_opt('flb_modal_header_main_text' , qa_post_text('flb_modal_header_main_text')) ;
+				qa_opt('flb_modal_header_footer_text' , qa_post_text('flb_modal_header_footer_text')) ;
+				qa_opt('flb_use_css_from_theme_file' , !!qa_post_text('flb_use_css_from_theme_file')) ;
+        			qa_opt('flb_modal_costum_css' , !!qa_post_text('flb_modal_costum_css')) ;
+				qa_opt('flb_display_on_every_load' , !!qa_post_text('flb_display_on_every_load')) ;
 				qa_opt('flb_modal_delay' , (int)qa_post_text('flb_modal_delay')) ;
 				
-        $saved=true;
+        			$saved=true;
 			}
 			 qa_set_display_rules($qa_content, array(
                 // for facebook like box
@@ -191,10 +191,10 @@
                     ),
                      'flb_like_box_width' => array(
                                     'id' => 'flb_like_box_width' ,
-                        						'label' => qa_lang('flb_like_box/b_like_box_width_label'),
-                        						'type'  => 'text',
-                        						'tags'  => 'name="flb_like_box_width"',
-                        						'value' => (!!qa_opt('flb_like_box_width')) ? qa_opt('flb_like_box_width') : 200 , /*this default value is to fit for Snow theme */
+				    'label' => qa_lang('flb_like_box/b_like_box_width_label'),
+				    'type'  => 'text',
+				    'tags'  => 'name="flb_like_box_width"',
+				    'value' => (!!qa_opt('flb_like_box_width')) ? qa_opt('flb_like_box_width') : 200 , /*this default value is to fit for Snow theme */
                     ),
                     //settings for facebook like box ends here 
                     'flb_show_fb_like_modal' => array(

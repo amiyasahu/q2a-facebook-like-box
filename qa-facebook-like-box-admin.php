@@ -4,7 +4,7 @@
 		const FACEBOOK_PAGE_URL         = 'flb_page_url' ;
 		const SHOW_FB_LIKE_BOX          = 'flb_show_fb_like_box' ;
 		const LIKE_BOX_COLOR_SCHEME     = 'flb_like_box_colorscheme';
-		const LIKE_BOX_SHOW_HEADER      = 'flb_like_box_header';
+		const LIKE_BOX_SHOW_HEADER      = 'flb_like_box_show_header';
 		const LIKE_BOX_SHOW_BORDER      = 'flb_like_box_show_border';
 		const LIKE_BOX_SHOW_FACES       = 'flb_like_box_show_faces';
 		const LIKE_BOX_SHOW_DATA_STREAM = 'flb_like_box_data_stream';

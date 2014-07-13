@@ -66,4 +66,5 @@ return array(
 	"m_costum_css_note"               => "Do not wrap this styles with <style>...</style> tags  " ,
 	"m_display_on_every_load"         => "Display popup on every page load ( Only required for debugging mode . Not recomended on live site )  " ,
 	"m_like_modal_delay"              => "Show the popup after ( time in seconds )" ,
+	"save_changes"              	  => "Save Changes" ,
 	);

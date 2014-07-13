@@ -51,12 +51,13 @@
         const MODAL_COSTUM_CSS         =  'flb_modal_costum_css' ;
         const MODAL_DISPLAY_EVERY_TIME =  'flb_display_on_every_load' ;
         const MODAL_DELAY              =  'flb_modal_delay' ;
+        const SAVE_BUTTON              =  'fb_like_box_save_btn' ;
 
 		function admin_form(&$qa_content)
 		{
 			$saved=false;
 
-			if (qa_clicked('fb_like_box_save_btn')) {
+			if (qa_clicked(self::SAVE_BUTTON)) {
                 qa_opt(self::FACEBOOK_PAGE_URL , qa_post_text(self::FACEBOOK_PAGE_URL)) ;
         		// for like box
 				qa_opt(self::SHOW_FB_LIKE_BOX ,          !!qa_post_text(self::SHOW_FB_LIKE_BOX)) ;
@@ -337,8 +338,8 @@
 
 				'buttons' => array(
       					array(
-      						'label' => 'Save Changes',
-      						'tags' => 'name="fb_like_box_save_btn"',
+      						'label' => qa_lang('flb_like_box/save_changes'),
+      						'tags' => 'name="'.self::SAVE_BUTTON.'"',
       					),
 				 ),
 			);

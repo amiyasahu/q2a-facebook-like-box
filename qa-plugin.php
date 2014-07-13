@@ -44,7 +44,9 @@
 		exit;
 	}
 
+	define('AMI_FB_LIKE_BOX_DIR', dirname(__FILE__));
 
+	qa_register_plugin_module('module', 'qa-facebook-like-box-admin.php', 'qa_facebook_like_box_admin', 'Facebook LikeBox Admin');
 	qa_register_plugin_module('widget', 'qa-facebook-like-box.php', 'q2a_facebook_like_box', 'Facebok Like Box');
 	qa_register_plugin_phrases('qa-flb-lang-*.php', 'flb_like_box');
 

@@ -118,13 +118,13 @@
 	                self::FACEBOOK_PAGE_URL => array(
 	                                'label' => qa_lang('flb_like_box/ur_fb_page_url'),
 	                                'type'  => 'text',
-	                                'tags'  => 'name="flb_page_url"',
+	                                'tags'  => 'name="'.self::FACEBOOK_PAGE_URL.'"',
 	                                'value' =>  qa_opt(self::FACEBOOK_PAGE_URL),
 	                                'note'  =>  qa_lang('flb_like_box/ur_fb_page_url_note'),
 	                ),
 	                self::SHOW_FB_LIKE_BOX => array(
 	                                'label' => qa_lang('flb_like_box/b_show_fb_like_box'),
-	                                'tags'  => 'name="flb_show_fb_like_box" id="flb_show_fb_like_box"',
+	                                'tags'  => 'name="'.self::SHOW_FB_LIKE_BOX.'" id="'.self::SHOW_FB_LIKE_BOX.'"',
 	                                'value' => qa_opt(self::SHOW_FB_LIKE_BOX),
 	                                'type'  => 'checkbox',
 	                ),
@@ -132,7 +132,7 @@
 	                                'id' => self::LIKE_BOX_COLOR_SCHEME ,
 	                                'label' => qa_lang('flb_like_box/b_colorscheme_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_box_colorscheme"',
+	                                'tags'  => 'name="'.self::LIKE_BOX_COLOR_SCHEME.'"',
 	                                'value' => qa_opt(self::LIKE_BOX_COLOR_SCHEME),
 	                                'options' => array(
 	                                      'light' => 'light',
@@ -143,7 +143,7 @@
 	                                'id' => self::LIKE_BOX_SHOW_HEADER ,
 	                                'label' => qa_lang('flb_like_box/b_box_header_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_box_header"',
+	                                'tags'  => 'name="'.self::LIKE_BOX_SHOW_HEADER.'"',
 	                                'value' => qa_opt(self::LIKE_BOX_SHOW_HEADER),
 	                                'options' => array(
 	                                   	  'false' => 'false',
@@ -154,7 +154,7 @@
 	                                'id' => self::LIKE_BOX_SHOW_BORDER ,
 	                                'label' => qa_lang('flb_like_box/b_show_border_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_box_show_border"',
+	                                'tags'  => 'name="'.self::LIKE_BOX_SHOW_BORDER.'"',
 	                                'value' =>  qa_opt(self::LIKE_BOX_SHOW_BORDER),
 	                                'options' => array(
 	                                	  'false' => 'false',
@@ -165,7 +165,7 @@
 	                                'id' => self::LIKE_BOX_SHOW_FACES ,
 	                                'label' => qa_lang('flb_like_box/b_show_faces_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_box_show_faces"',
+	                                'tags'  => 'name="'.self::LIKE_BOX_SHOW_FACES.'"',
 	                                'value' => qa_opt(self::LIKE_BOX_SHOW_FACES),
 	                                'options' => array(
 	                                      'true'  =>'true',
@@ -176,7 +176,7 @@
 	                                'id' => self::LIKE_BOX_SHOW_DATA_STREAM ,
 	                    						'label' => qa_lang('flb_like_box/b_show_stream_label'),
 	                    						'type'  => 'select',
-	                    						'tags'  => 'name="flb_like_box_data_stream"',
+	                    						'tags'  => 'name="'.self::LIKE_BOX_SHOW_DATA_STREAM.'"',
 	                    						'value' => qa_opt(self::LIKE_BOX_SHOW_DATA_STREAM),
 	                    						'options' => array(
 	                                                  'false' => 'false',
@@ -188,34 +188,34 @@
 	                                'id' => self::LIKE_BOX_HEIGHT ,
 	                                'label' => qa_lang('flb_like_box/b_like_box_height_label'),
 	                                'type'  => 'text',
-	                                'tags'  => 'name="flb_like_box_height"',
-	                                'value' => (!!qa_opt(self::LIKE_BOX_HEIGHT)) ? qa_opt(self::LIKE_BOX_HEIGHT) : 320 , /*this default value is to fit for Snow theme */
+	                                'tags'  => 'name="'.self::LIKE_BOX_HEIGHT.'"',
+	                                'value' => qa_opt(self::LIKE_BOX_HEIGHT), /*this default value is to fit for Snow theme */
 	                ),
 	                 self::LIKE_BOX_WIDTH => array(
 	                                'id' => self::LIKE_BOX_WIDTH ,
 								    'label' => qa_lang('flb_like_box/b_like_box_width_label'),
 								    'type'  => 'text',
-								    'tags'  => 'name="flb_like_box_width"',
+								    'tags'  => 'name="'.self::LIKE_BOX_WIDTH.'"',
 								    'value' => (!!qa_opt(self::LIKE_BOX_WIDTH)) ? qa_opt(self::LIKE_BOX_WIDTH) : 200 , /*this default value is to fit for Snow theme */
 	                ),
 	                //settings for facebook like box ends here
 	                self::SHOW_FB_LIKE_MODAL => array(
 	                                'label' => qa_lang('flb_like_box/m_show_fb_like_modal'),
-	                                'tags'  => 'name="flb_show_fb_like_modal" id="flb_show_fb_like_modal"',
+	                                'tags'  => 'name="'.self::SHOW_FB_LIKE_MODAL.'" id="'.self::SHOW_FB_LIKE_MODAL.'"',
 	                                'value' => qa_opt(self::SHOW_FB_LIKE_MODAL),
 	                                'type'  => 'checkbox',
 	                ),
 	                self::MODAL_USE_CSS_FROM_THEME => array(
 	                                'id' => self::MODAL_USE_CSS_FROM_THEME ,
 	                                'label' => qa_lang('flb_like_box/m_use_css_from_theme_file'),
-	                                'tags'  => 'name="flb_use_css_from_theme_file"',
+	                                'tags'  => 'name="'.self::MODAL_USE_CSS_FROM_THEME.'"',
 	                                'value' => qa_opt(self::MODAL_USE_CSS_FROM_THEME),
 	                                'type'  => 'checkbox',
 	                ),
 	                self::MODAL_DISPLAY_EVERY_TIME => array(
 	                                'id' => self::MODAL_DISPLAY_EVERY_TIME ,
 	                                'label' => qa_lang('flb_like_box/m_display_on_every_load'),
-	                                'tags'  => 'name="flb_display_on_every_load"',
+	                                'tags'  => 'name="'.self::MODAL_DISPLAY_EVERY_TIME.'"',
 	                                'value' => qa_opt(self::MODAL_DISPLAY_EVERY_TIME),
 	                                'type'  => 'checkbox',
 	                ),
@@ -224,7 +224,7 @@
 	                                'id' => self::MODAL_COLOR_SCHEME ,
 	                                'label' => qa_lang('flb_like_box/m_colorscheme_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_modal_colorscheme"',
+	                                'tags'  => 'name="'.self::MODAL_COLOR_SCHEME.'"',
 	                                'value' => qa_opt(self::MODAL_COLOR_SCHEME),
 	                                'options' => array(
 	                                      'light' => 'light',
@@ -235,7 +235,7 @@
 	                                'id' => self::MODAL_SHOW_HEADER ,
 	                                'label' => qa_lang('flb_like_box/m_box_header_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_modal_header"',
+	                                'tags'  => 'name="'.self::MODAL_SHOW_HEADER.'"',
 	                                'value' => qa_opt(self::MODAL_SHOW_HEADER),
 	                                'options' => array(
 	                                      'false' => 'false',
@@ -246,7 +246,7 @@
 	                                'id' => self::MODAL_SHOW_BORDER ,
 	                                'label' => qa_lang('flb_like_box/m_show_border_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_modal_show_border"',
+	                                'tags'  => 'name="'.self::MODAL_SHOW_BORDER.'"',
 	                                'value' =>  qa_opt(self::MODAL_SHOW_BORDER),
 	                                'options' => array(
 	                                    'false' => 'false',
@@ -257,7 +257,7 @@
 	                                'id' => self::MODAL_SHOW_FACES ,
 	                                'label' => qa_lang('flb_like_box/m_show_faces_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_modal_show_faces"',
+	                                'tags'  => 'name="'.self::MODAL_SHOW_FACES.'"',
 	                                'value' => qa_opt(self::MODAL_SHOW_FACES),
 	                                'options' => array(
 	                                      'true'  =>'true',
@@ -268,7 +268,7 @@
 	                                'id' => self::MODAL_SHOW_DATA_STREAM ,
 	                                'label' => qa_lang('flb_like_box/m_show_stream_label'),
 	                                'type'  => 'select',
-	                                'tags'  => 'name="flb_like_modal_data_stream"',
+	                                'tags'  => 'name="'.self::MODAL_SHOW_DATA_STREAM.'"',
 	                                'value' => qa_opt(self::MODAL_SHOW_DATA_STREAM),
 	                                'options' => array(
 	                                      'false' => 'false',
@@ -280,21 +280,21 @@
 	                                'id' => self::MODAL_HEIGHT ,
 	                                'label' => qa_lang('flb_like_box/m_like_modal_height_label'),
 	                                'type'  => 'text',
-	                                'tags'  => 'name="flb_like_modal_height"',
-	                                'value' => (!!qa_opt(self::MODAL_HEIGHT)) ? qa_opt(self::MODAL_HEIGHT) : 300 , /*this default value is to fit for Snow theme */
+	                                'tags'  => 'name="'.self::MODAL_HEIGHT.'"',
+	                                'value' => qa_opt(self::MODAL_HEIGHT) , /*this default value is to fit for Snow theme */
 	                ),
 	                 self::MODAL_WIDTH => array(
 	                                'id' => self::MODAL_WIDTH ,
 	                                'label' => qa_lang('flb_like_box/m_like_modal_width_label'),
 	                                'type'  => 'text',
-	                                'tags'  => 'name="flb_like_modal_width"',
-	                                'value' => (!!qa_opt(self::MODAL_WIDTH)) ? qa_opt(self::MODAL_WIDTH) : 200 , /*this default value is to fit for Snow theme */
+	                                'tags'  => 'name="'.self::MODAL_WIDTH.'"',
+	                                'value' => qa_opt(self::MODAL_WIDTH) , /*this default value is to fit for Snow theme */
 	                ),
 	               self::MODAL_DELAY => array(
 	                                'id' => self::MODAL_DELAY ,
 	                                'label' => qa_lang('flb_like_box/m_like_modal_delay'),
 	                                'type'  => 'text',
-	                                'tags'  => 'name="flb_modal_delay"',
+	                                'tags'  => 'name="'.self::MODAL_DELAY.'"',
 	                                'value' =>  qa_opt(self::MODAL_DELAY),
 	                                'note'  =>  qa_lang('flb_like_box/m_like_modal_cookie_expire_note'),
 	                ),
@@ -303,7 +303,7 @@
 	                                'id' => self::MODAL_COOKIE_EXPIRE ,
 	                                'label' => qa_lang('flb_like_box/m_like_modal_cookie_expire'),
 	                                'type'  => 'text',
-	                                'tags'  => 'name="flb_modal_cookie_expire"',
+	                                'tags'  => 'name="'.self::MODAL_COOKIE_EXPIRE.'"',
 	                                'value' =>  qa_opt(self::MODAL_COOKIE_EXPIRE),
 	                                'note'  =>  qa_lang('flb_like_box/m_like_modal_cookie_expire_note'),
 	                ),
@@ -312,7 +312,7 @@
 	                                'label' => qa_lang('flb_like_box/m_pop_up_header_text'),
 	                                'type'  => 'textarea',
 	                                'rows'  => 4 ,
-	                                'tags'  => 'name="flb_modal_header_main_text"',
+	                                'tags'  => 'name="'.self::MODAL_HEADER_MAIN_TEXT.'"',
 	                                'value' =>  qa_opt(self::MODAL_HEADER_MAIN_TEXT),
 	                ),
 
@@ -321,7 +321,7 @@
 	                                'label' => qa_lang('flb_like_box/m_pop_up_footer_text'),
 	                                'type'  => 'textarea',
 	                                'rows'  => 4 ,
-	                                'tags'  => 'name="flb_modal_header_footer_text"',
+	                                'tags'  => 'name="'.self::MODAL_FOOTER_TEXT.'"',
 	                                'value' =>  qa_opt(self::MODAL_FOOTER_TEXT),
 	                ),
 	               self::MODAL_COSTUM_CSS => array(
@@ -329,7 +329,7 @@
 	                                'label' => qa_lang('flb_like_box/m_costum_css'),
 	                                'type'  => 'textarea',
 	                                'rows'  => 4 ,
-	                                'tags'  => 'name="flb_modal_costum_css"',
+	                                'tags'  => 'name="'.self::MODAL_COSTUM_CSS.'"',
 	                                'value' =>  qa_opt(self::MODAL_COSTUM_CSS),
 	                                'note' => qa_lang_html('flb_like_box/m_costum_css_note'),
 	                ),

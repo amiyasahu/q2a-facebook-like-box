@@ -62,7 +62,7 @@ return array(
 	"m_pop_up_footer_Link"            => "Footer link to be displayed for the popup ( HTML is allowed )" ,
 	"m_show_fb_like_modal"            => "Show Facebook Like Modal when user visits first time " ,
 	"m_use_css_from_theme_file"       => "Use styling from the Theme css file " ,
-	"m_costum_css"                    => "Additional CSS properties according to your chsoice " ,
+	"m_costum_css"                    => "Additional CSS properties according to your choice " ,
 	"m_costum_css_note"               => "Do not wrap this styles with <style>...</style> tags  " ,
 	"m_display_on_every_load"         => "Display popup on every page load ( Only required for debugging mode . Not recomended on live site )  " ,
 	"m_like_modal_delay"              => "Show the popup after ( time in seconds )" ,

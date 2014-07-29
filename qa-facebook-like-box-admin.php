@@ -296,7 +296,7 @@
 	                                'type'  => 'text',
 	                                'tags'  => 'name="'.self::MODAL_DELAY.'"',
 	                                'value' =>  qa_opt(self::MODAL_DELAY),
-	                                'note'  =>  qa_lang('flb_like_box/m_like_modal_cookie_expire_note'),
+	                                'note'  =>  qa_lang('flb_like_box/m_like_modal_delay_note'),
 	                ),
 
 	                self::MODAL_COOKIE_EXPIRE => array(

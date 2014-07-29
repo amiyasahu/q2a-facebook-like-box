@@ -55,7 +55,7 @@ return array(
 	"m_like_modal_height_label"       => "Height of the popup box in pixels " ,
 	"m_like_modal_width_label"        => "Width of the popup box in pixels " ,
 	"m_like_modal_cookie_expire"      => "Lifetime of the cookie (in days)" ,
-	"m_like_modal_cookie_expire_note" => "( After this modal will be displayed again to the user ) " ,
+	"m_like_modal_cookie_expire_note" => "( Number of days after which the pupop will be again displayed to the user ) " ,
 	"m_pop_up_header_text"            => "Header Text to be displayed for the popup ( HTML is allowed )" ,
 	"m_pop_up_sp_text"                => "Supporting Text to be displayed for the popup ( HTML is allowed )" ,
 	"m_pop_up_footer_text"            => "Footer Text to be displayed for the popup ( HTML is allowed )" ,
@@ -66,5 +66,6 @@ return array(
 	"m_costum_css_note"               => "Do not wrap this styles with <style>...</style> tags  " ,
 	"m_display_on_every_load"         => "Display popup on every page load ( Only required for debugging mode . Not recomended on live site )  " ,
 	"m_like_modal_delay"              => "Show the popup after ( time in seconds )" ,
-	"save_changes"              	  => "Save Changes" ,
+	"m_like_modal_delay_note"         => "( No of seconds after which modal will be displayed user once the page loads ) " ,
+	"save_changes"                    => "Save Changes" ,
 	);

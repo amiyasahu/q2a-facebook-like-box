@@ -29,13 +29,13 @@
 	Plugin Name: Facebook Like Box
 	Plugin URI: https://github.com/amiyasahu/q2a-facebook-like-box
 	Plugin Description: Provides a basic widget for displaying Facebook Like Box
-	Plugin Version: 1.0
-	Plugin Date: 2014-07-06
+	Plugin Version: 1.1
+	Plugin Date: 2014-07-30
 	Plugin Author: Amiya Sahu
 	Plugin Author URI: http://www.amiyasahu.com/
 	Plugin License: GPLv2
 	Plugin Minimum Question2Answer Version: 1.6
-	Plugin Update Check URI: 
+	Plugin Update Check URI: https://raw.githubusercontent.com/amiyasahu/q2a-facebook-like-box/master/qa-plugin.php
 */
 
 

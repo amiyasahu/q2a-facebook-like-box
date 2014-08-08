@@ -217,10 +217,11 @@
                       $('#fb-back').delay(<?php echo $delay; ?>).fadeIn("slow"); // options slow or fast
                       $('#fb-close, #fb-exit').click(function () {
                         $('#fb-back').stop().fadeOut("slow"); // options slow or fast
+                        //set the cookie expiring time after the pupop is closed . 
+                  	$.cookie('popup_fb', 'yes', { path: '/', expires: <?php echo $cookie_expire ?> });
                       });
                    }
-                  //initiate popup function by setting up the cookie expiring time
-                  $.cookie('popup_fb', 'yes', { path: '/', expires: <?php echo $cookie_expire ?> });
+                  
                   });
                   //]]>
                   </script>

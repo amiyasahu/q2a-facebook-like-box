@@ -328,14 +328,7 @@
             $data['border_color'] = 'border_color=%23ffffff';
 
             $src_str = implode( '&', $data );
-
-            $facebook_app_id = qa_opt( 'facebook_app_id' );
-
-
-            if ( !$facebook_app_id ) {
-                // if the facebook app id is not set set it with app id given by the Facebook
-                $facebook_app_id = "576492145800361";
-            }
+            
             if ( !$use_css_from_theme ) {
                 // if not using css from  theme put these default styling
                 $css = '#fb-back {display: none; background: rgba(0,0,0,0.8); width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 99999; } #fb-exit {width: 100%; height: 100%; } .fb-box-inner {width:300px; position: relative; display:block; padding: 20px 0px 0px; margin:0 auto; text-align:center; } #fb-close {cursor: pointer; position: absolute; top: 10px; right: -10px; font-size: 18px; font-weight:700; color: #000; z-index: 99999; display:inline-block; line-height: 18px; height:18px; width: 18px; } #fb-close:hover {color:#06c; } #fb-box {min-width: 340px; min-height: 360px; position: absolute; top: 50%; left: 50%; margin: -220px 0 0 -170px; -webkit-box-shadow: 0px 0px 16px #000; -moz-box-shadow: 0px 0px 16px #000; box-shadow: 0px 0px 16px #000; -webkit-border-radius: 8px;- moz-border-radius: 8px; border-radius: 8px; background: #fff; /* pop up box bg color */ border-bottom: 40px solid #f0f0f0; /* pop up bottom border color/size */ } .fb-box-inner h3 {line-height: 1; margin:0 auto; text-transform:none; letter-spacing:none; font-size: 23px!important; /* header size */ color:#06c!important; /* header color */ } .fb-box-inner p {line-height: 1; margin:5px auto 5px; text-transform:none; letter-spacing:none; font-size: 13px!important; /* header size  */ color:#333!important; /* text color */ } a.fb-link {position:relative; margin: 0 auto; display: block; text-align:center; color: #333; /* link color */ bottom: -30px; } #fb-footer-txt {position:relative; margin: 0 auto; display: block; text-align:center; color: #333; /* link color */ bottom: -30px; } #fb-header-txt{margin-bottom: 10px ; } #fb-box h3,#fb-box p, a.fb-link { max-width:290px; padding:0; }';

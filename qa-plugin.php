@@ -29,8 +29,8 @@
         Plugin Name: Facebook Like Box
         Plugin URI: https://github.com/amiyasahu/q2a-facebook-like-box
         Plugin Description: Provides a basic widget for displaying Facebook Like Box
-        Plugin Version: 1.2
-        Plugin Date: 2014-07-30
+        Plugin Version: 1.2.1
+        Plugin Date: 2015-07-26
         Plugin Author: Amiya Sahu
         Plugin Author URI: http://www.amiyasahu.com/
         Plugin License: GPLv2

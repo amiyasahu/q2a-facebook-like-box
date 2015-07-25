@@ -57,6 +57,7 @@
                 qa_facebook_like_box_admin::MODAL_DISPLAY_EVERY_TIME,
                 qa_facebook_like_box_admin::MODAL_FOOTER_TEXT,
                 qa_facebook_like_box_admin::MODAL_COSTUM_CSS,
+                qa_facebook_like_box_admin::MODAL_DELAY,
             ) );
 
             $fb_page_url = $this->get_fb_settings( $widget_opt, 'url' );
@@ -94,7 +95,7 @@
 
                 case 'facebook_app_id':
 
-                    return @$widget_opt['facebook_app_id'];
+                    return $widget_opt['facebook_app_id'];
                     break;
 
                 case 'show_fb_like_box':

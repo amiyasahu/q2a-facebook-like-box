@@ -33,18 +33,29 @@
             require_once AMI_FB_LIKE_BOX_DIR . '/qa-facebook-like-box-admin.php';
             $has_error = false;
             $error_message = "";
-            $widget_opt = qa_get_options( array( 'facebook_app_id', qa_facebook_like_box_admin::SHOW_FB_LIKE_BOX,
-                qa_facebook_like_box_admin::SHOW_FB_LIKE_MODAL, qa_facebook_like_box_admin::FACEBOOK_PAGE_URL,
+            $widget_opt = qa_get_options( array( 'facebook_app_id',
+                qa_facebook_like_box_admin::SHOW_FB_LIKE_BOX,
+                qa_facebook_like_box_admin::SHOW_FB_LIKE_MODAL,
+                qa_facebook_like_box_admin::FACEBOOK_PAGE_URL,
                 qa_facebook_like_box_admin::LIKE_BOX_COLOR_SCHEME,
-                qa_facebook_like_box_admin::LIKE_BOX_SHOW_HEADER, qa_facebook_like_box_admin::LIKE_BOX_SHOW_BORDER,
-                qa_facebook_like_box_admin::LIKE_BOX_SHOW_FACES, qa_facebook_like_box_admin::LIKE_BOX_SHOW_DATA_STREAM, qa_facebook_like_box_admin::LIKE_BOX_HEIGHT,
+                qa_facebook_like_box_admin::LIKE_BOX_SHOW_HEADER,
+                qa_facebook_like_box_admin::LIKE_BOX_SHOW_BORDER,
+                qa_facebook_like_box_admin::LIKE_BOX_SHOW_FACES,
+                qa_facebook_like_box_admin::LIKE_BOX_SHOW_DATA_STREAM,
+                qa_facebook_like_box_admin::LIKE_BOX_HEIGHT,
                 qa_facebook_like_box_admin::LIKE_BOX_WIDTH,
-                qa_facebook_like_box_admin::MODAL_USE_CSS_FROM_THEME, qa_facebook_like_box_admin::MODAL_COLOR_SCHEME,
-                qa_facebook_like_box_admin::MODAL_SHOW_HEADER, qa_facebook_like_box_admin::MODAL_SHOW_BORDER,
-                qa_facebook_like_box_admin::MODAL_SHOW_FACES, qa_facebook_like_box_admin::MODAL_SHOW_DATA_STREAM,
-                qa_facebook_like_box_admin::MODAL_HEIGHT, qa_facebook_like_box_admin::MODAL_WIDTH,
-                qa_facebook_like_box_admin::MODAL_COOKIE_EXPIRE, qa_facebook_like_box_admin::MODAL_HEADER_MAIN_TEXT,
-                qa_facebook_like_box_admin::MODAL_DISPLAY_EVERY_TIME, qa_facebook_like_box_admin::MODAL_FOOTER_TEXT,
+                qa_facebook_like_box_admin::MODAL_USE_CSS_FROM_THEME,
+                qa_facebook_like_box_admin::MODAL_COLOR_SCHEME,
+                qa_facebook_like_box_admin::MODAL_SHOW_HEADER,
+                qa_facebook_like_box_admin::MODAL_SHOW_BORDER,
+                qa_facebook_like_box_admin::MODAL_SHOW_FACES,
+                qa_facebook_like_box_admin::MODAL_SHOW_DATA_STREAM,
+                qa_facebook_like_box_admin::MODAL_HEIGHT,
+                qa_facebook_like_box_admin::MODAL_WIDTH,
+                qa_facebook_like_box_admin::MODAL_COOKIE_EXPIRE,
+                qa_facebook_like_box_admin::MODAL_HEADER_MAIN_TEXT,
+                qa_facebook_like_box_admin::MODAL_DISPLAY_EVERY_TIME,
+                qa_facebook_like_box_admin::MODAL_FOOTER_TEXT,
                 qa_facebook_like_box_admin::MODAL_COSTUM_CSS,
             ) );
 
@@ -77,63 +88,55 @@
             switch ( $opt ) {
                 case 'url':
                 case 'href':
+
                     $value = !empty( $widget_opt[ qa_facebook_like_box_admin::FACEBOOK_PAGE_URL ] ) ? 'https://www.facebook.com/' . $widget_opt[ qa_facebook_like_box_admin::FACEBOOK_PAGE_URL ] : "";
                     break;
 
                 case 'facebook_app_id':
-                    $value = !empty( $widget_opt['facebook_app_id'] ) ? $widget_opt['facebook_app_id'] : "";
+
+                    return @$widget_opt['facebook_app_id'];
                     break;
 
                 case 'show_fb_like_box':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::SHOW_FB_LIKE_BOX ] ) ? ! !$widget_opt[ qa_facebook_like_box_admin::SHOW_FB_LIKE_BOX ] : false;
+
+                    return (bool) $widget_opt[ qa_facebook_like_box_admin::SHOW_FB_LIKE_BOX ];
                     break;
 
                 case 'show_fb_like_modal':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::SHOW_FB_LIKE_MODAL ] ) ? ! !$widget_opt[ qa_facebook_like_box_admin::SHOW_FB_LIKE_MODAL ] : false;
+
+                    return (bool) $widget_opt[ qa_facebook_like_box_admin::SHOW_FB_LIKE_MODAL ];
                     break;
 
                 case 'colorscheme':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_COLOR_SCHEME ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_COLOR_SCHEME ] : "";
-                    $allowed_value = array( 'light', 'dark' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "light";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_COLOR_SCHEME ];
+
                     break;
 
                 case 'show_header':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_HEADER ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_HEADER ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "true";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_HEADER ];
                     break;
 
                 case 'show_border':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_BORDER ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_BORDER ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "false";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_BORDER ];
                     break;
 
                 case 'show_faces':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_FACES ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_FACES ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "true";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_FACES ];
                     break;
 
                 case 'stream':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_DATA_STREAM ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_DATA_STREAM ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "false";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_SHOW_DATA_STREAM ];
                     break;
 
                 case 'height':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_HEIGHT ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_HEIGHT ] : "";
+
+                    $value = (int) $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_HEIGHT ];
+
                     if ( $this->get_fb_settings( $widget_opt, "data_stream" ) && $this->get_fb_settings( $widget_opt, "show_faces" ) ) {
                         // if both are true min height is 556px
                         $min_height = 556;
@@ -145,66 +148,56 @@
                         $min_height = 300;
                     }
 
-                    if ( !$value || $value < $min_height ) {
-                        $value = $min_height;
-                    }
+                    return max( $value, $min_height );
+
                     break;
 
                 case 'width':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_WIDTH ] ) ? $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_WIDTH ] : "";
+
+                    $value = (int) $widget_opt[ qa_facebook_like_box_admin::LIKE_BOX_WIDTH ];
                     $min_width = 190; /*allow only these values*/
-                    if ( !$value || $value < $min_width ) {
-                        $value = $min_width;
-                    }
+
+                    return max( $value, $min_width );
                     break;
 
                 case 'm_url':
                 case 'm_href':
+
                     $value = !empty( $widget_opt[ qa_facebook_like_box_admin::FACEBOOK_PAGE_URL ] ) ? '//www.facebook.com/plugins/likebox.php?href=http://www.facebook.com/' . $widget_opt[ qa_facebook_like_box_admin::FACEBOOK_PAGE_URL ] : "";
                     break;
 
                 case 'm_colorscheme':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_COLOR_SCHEME ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_COLOR_SCHEME ] : "";
-                    $allowed_value = array( 'light', 'dark' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "light";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::MODAL_COLOR_SCHEME ];
+
                     break;
 
                 case 'm_show_header':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_HEADER ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_HEADER ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "false";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_HEADER ];
+
                     break;
 
                 case 'm_show_border':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_BORDER ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_BORDER ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "true";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_BORDER ];
                     break;
 
                 case 'm_show_faces':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_FACES ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_FACES ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "true";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_FACES ];
+
                     break;
 
                 case 'm_stream':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_DATA_STREAM ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_DATA_STREAM ] : "";
-                    $allowed_value = array( 'true', 'false' ); /*allow only these values*/
-                    if ( !$value || !in_array( $value, $allowed_value ) ) {
-                        $value = "false";
-                    }
+
+                    return $widget_opt[ qa_facebook_like_box_admin::MODAL_SHOW_DATA_STREAM ];
+
                     break;
 
                 case 'm_height':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_HEIGHT ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_HEIGHT ] : "";
+
+                    $value = (int) $widget_opt[ qa_facebook_like_box_admin::MODAL_HEIGHT ];
                     if ( $this->get_fb_settings( $widget_opt, "data_stream" ) && $this->get_fb_settings( $widget_opt, "show_faces" ) ) {
                         // if both are true min height is 556px
                         $min_height = 556;
@@ -216,31 +209,29 @@
                         $min_height = 275;
                     }
 
-                    if ( !$value || $value < $min_height ) {
-                        $value = $min_height;
-                    }
+                    return max( $value, $min_height );
                     break;
 
                 case 'm_width':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_WIDTH ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_WIDTH ] : "";
+
+                    $value = (int) $widget_opt[ qa_facebook_like_box_admin::MODAL_WIDTH ];
                     $min_width = 300; /*allow only these values*/
-                    if ( !$value || $value < $min_width ) {
-                        $value = $min_width;
-                    }
+
+                    return max( $value, $min_width );
                     break;
                 case 'm_delay':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_DELAY ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_DELAY ] : 10 /*10 seconds by default*/
-                    ;
+
+                    $value = (int) $widget_opt[ qa_facebook_like_box_admin::MODAL_DELAY ];
+
                     $min_delay = 5; /*allow only these values*/
-                    if ( !$value || $value < $min_delay ) {
-                        $value = $min_delay;
-                    }
-                    $value = $value * 1000; /*make it to milli seconds */
+
+                    return max( $value, $min_delay ) * 1000; /*make it to milli seconds */
+
                     break;
 
                 case 'm_cookie_expire':
-                    $value = !empty( $widget_opt[ qa_facebook_like_box_admin::MODAL_COOKIE_EXPIRE ] ) ? $widget_opt[ qa_facebook_like_box_admin::MODAL_COOKIE_EXPIRE ] : 30 /*by default 30*/
-                    ;
+
+                    $value = $widget_opt[ qa_facebook_like_box_admin::MODAL_COOKIE_EXPIRE ];
                     break;
                 default:
                     break;

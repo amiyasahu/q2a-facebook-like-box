@@ -118,232 +118,34 @@
                 'ok'      => $saved ? qa_lang( 'flb_like_box/settings_saved' ) : null,
 
                 'fields'  => array(
-                    self::FACEBOOK_PAGE_URL         => array(
-                        'label' => qa_lang( 'flb_like_box/ur_fb_page_url' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::FACEBOOK_PAGE_URL . '"',
-                        'value' => qa_opt( self::FACEBOOK_PAGE_URL ),
-                        'note'  => qa_lang( 'flb_like_box/ur_fb_page_url_note' ),
-                    ),
-                    self::SHOW_FB_LIKE_BOX          => array(
-                        'label' => qa_lang( 'flb_like_box/b_show_fb_like_box' ),
-                        'tags'  => 'name="' . self::SHOW_FB_LIKE_BOX . '" id="' . self::SHOW_FB_LIKE_BOX . '"',
-                        'value' => qa_opt( self::SHOW_FB_LIKE_BOX ),
-                        'type'  => 'checkbox',
-                    ),
-                    self::LIKE_BOX_COLOR_SCHEME     => array(
-                        'id'      => self::LIKE_BOX_COLOR_SCHEME,
-                        'label'   => qa_lang( 'flb_like_box/b_colorscheme_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::LIKE_BOX_COLOR_SCHEME . '"',
-                        'value'   => qa_opt( self::LIKE_BOX_COLOR_SCHEME ),
-                        'options' => array(
-                            'light' => 'light',
-                            'dark'  => 'dark',
-                        ),
-                    ),
-                    self::LIKE_BOX_SHOW_HEADER      => array(
-                        'id'      => self::LIKE_BOX_SHOW_HEADER,
-                        'label'   => qa_lang( 'flb_like_box/b_box_header_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::LIKE_BOX_SHOW_HEADER . '"',
-                        'value'   => qa_opt( self::LIKE_BOX_SHOW_HEADER ),
-                        'options' => array(
-                            'false' => 'false',
-                            'true'  => 'true',
-                        ),
-                    ),
-                    self::LIKE_BOX_SHOW_BORDER      => array(
-                        'id'      => self::LIKE_BOX_SHOW_BORDER,
-                        'label'   => qa_lang( 'flb_like_box/b_show_border_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::LIKE_BOX_SHOW_BORDER . '"',
-                        'value'   => qa_opt( self::LIKE_BOX_SHOW_BORDER ),
-                        'options' => array(
-                            'false' => 'false',
-                            'true'  => 'true',
-                        ),
-                    ),
-                    self::LIKE_BOX_SHOW_FACES       => array(
-                        'id'      => self::LIKE_BOX_SHOW_FACES,
-                        'label'   => qa_lang( 'flb_like_box/b_show_faces_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::LIKE_BOX_SHOW_FACES . '"',
-                        'value'   => qa_opt( self::LIKE_BOX_SHOW_FACES ),
-                        'options' => array(
-                            'true'  => 'true',
-                            'false' => 'false',
-                        ),
-                    ),
-                    self::LIKE_BOX_SHOW_DATA_STREAM => array(
-                        'id'      => self::LIKE_BOX_SHOW_DATA_STREAM,
-                        'label'   => qa_lang( 'flb_like_box/b_show_stream_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::LIKE_BOX_SHOW_DATA_STREAM . '"',
-                        'value'   => qa_opt( self::LIKE_BOX_SHOW_DATA_STREAM ),
-                        'options' => array(
-                            'false' => 'false',
-                            'true'  => 'true',
-                        ),
-                    ),
-
-                    self::LIKE_BOX_HEIGHT           => array(
-                        'id'    => self::LIKE_BOX_HEIGHT,
-                        'label' => qa_lang( 'flb_like_box/b_like_box_height_label' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::LIKE_BOX_HEIGHT . '"',
-                        'value' => qa_opt( self::LIKE_BOX_HEIGHT ), /*this default value is to fit for Snow theme */
-                    ),
-                    self::LIKE_BOX_WIDTH            => array(
-                        'id'    => self::LIKE_BOX_WIDTH,
-                        'label' => qa_lang( 'flb_like_box/b_like_box_width_label' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::LIKE_BOX_WIDTH . '"',
-                        'value' => ( ! !qa_opt( self::LIKE_BOX_WIDTH ) ) ? qa_opt( self::LIKE_BOX_WIDTH ) : 200, /*this default value is to fit for Snow theme */
-                    ),
+                    self::FACEBOOK_PAGE_URL         => $this->get_fb_page_url_field(),
+                    self::SHOW_FB_LIKE_BOX          => $this->get_show_likebox_field(),
+                    self::LIKE_BOX_COLOR_SCHEME     => $this->get_lokebox_color_scheme_field(),
+                    self::LIKE_BOX_SHOW_HEADER      => $this->get_likebox_show_header_field(),
+                    self::LIKE_BOX_SHOW_BORDER      => $this->get_likebox_show_border_field(),
+                    self::LIKE_BOX_SHOW_FACES       => $this->get_likebox_show_faces_field(),
+                    self::LIKE_BOX_SHOW_DATA_STREAM => $this->get_likebox_show_data_stream(),
+                    self::LIKE_BOX_HEIGHT           => $this->get_likebox_height_field(),
+                    self::LIKE_BOX_WIDTH            => $this->get_likebox_width_field(),
                     //settings for facebook like box ends here
-                    self::SHOW_FB_LIKE_MODAL        => array(
-                        'label' => qa_lang( 'flb_like_box/m_show_fb_like_modal' ),
-                        'tags'  => 'name="' . self::SHOW_FB_LIKE_MODAL . '" id="' . self::SHOW_FB_LIKE_MODAL . '"',
-                        'value' => qa_opt( self::SHOW_FB_LIKE_MODAL ),
-                        'type'  => 'checkbox',
-                    ),
-                    self::MODAL_USE_CSS_FROM_THEME  => array(
-                        'id'    => self::MODAL_USE_CSS_FROM_THEME,
-                        'label' => qa_lang( 'flb_like_box/m_use_css_from_theme_file' ),
-                        'tags'  => 'name="' . self::MODAL_USE_CSS_FROM_THEME . '"',
-                        'value' => qa_opt( self::MODAL_USE_CSS_FROM_THEME ),
-                        'type'  => 'checkbox',
-                    ),
-                    self::MODAL_DISPLAY_EVERY_TIME  => array(
-                        'id'    => self::MODAL_DISPLAY_EVERY_TIME,
-                        'label' => qa_lang( 'flb_like_box/m_display_on_every_load' ),
-                        'tags'  => 'name="' . self::MODAL_DISPLAY_EVERY_TIME . '"',
-                        'value' => qa_opt( self::MODAL_DISPLAY_EVERY_TIME ),
-                        'type'  => 'checkbox',
-                    ),
-
-                    self::MODAL_COLOR_SCHEME        => array(
-                        'id'      => self::MODAL_COLOR_SCHEME,
-                        'label'   => qa_lang( 'flb_like_box/m_colorscheme_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::MODAL_COLOR_SCHEME . '"',
-                        'value'   => qa_opt( self::MODAL_COLOR_SCHEME ),
-                        'options' => array(
-                            'light' => 'light',
-                            'dark'  => 'dark',
-                        ),
-                    ),
-                    self::MODAL_SHOW_HEADER         => array(
-                        'id'      => self::MODAL_SHOW_HEADER,
-                        'label'   => qa_lang( 'flb_like_box/m_box_header_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::MODAL_SHOW_HEADER . '"',
-                        'value'   => qa_opt( self::MODAL_SHOW_HEADER ),
-                        'options' => array(
-                            'false' => 'false',
-                            'true'  => 'true',
-                        ),
-                    ),
-                    self::MODAL_SHOW_BORDER         => array(
-                        'id'      => self::MODAL_SHOW_BORDER,
-                        'label'   => qa_lang( 'flb_like_box/m_show_border_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::MODAL_SHOW_BORDER . '"',
-                        'value'   => qa_opt( self::MODAL_SHOW_BORDER ),
-                        'options' => array(
-                            'false' => 'false',
-                            'true'  => 'true',
-                        ),
-                    ),
-                    self::MODAL_SHOW_FACES          => array(
-                        'id'      => self::MODAL_SHOW_FACES,
-                        'label'   => qa_lang( 'flb_like_box/m_show_faces_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::MODAL_SHOW_FACES . '"',
-                        'value'   => qa_opt( self::MODAL_SHOW_FACES ),
-                        'options' => array(
-                            'true'  => 'true',
-                            'false' => 'false',
-                        ),
-                    ),
-                    self::MODAL_SHOW_DATA_STREAM    => array(
-                        'id'      => self::MODAL_SHOW_DATA_STREAM,
-                        'label'   => qa_lang( 'flb_like_box/m_show_stream_label' ),
-                        'type'    => 'select',
-                        'tags'    => 'name="' . self::MODAL_SHOW_DATA_STREAM . '"',
-                        'value'   => qa_opt( self::MODAL_SHOW_DATA_STREAM ),
-                        'options' => array(
-                            'false' => 'false',
-                            'true'  => 'true',
-                        ),
-                    ),
-
-                    self::MODAL_HEIGHT              => array(
-                        'id'    => self::MODAL_HEIGHT,
-                        'label' => qa_lang( 'flb_like_box/m_like_modal_height_label' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::MODAL_HEIGHT . '"',
-                        'value' => qa_opt( self::MODAL_HEIGHT ), /*this default value is to fit for Snow theme */
-                    ),
-                    self::MODAL_WIDTH               => array(
-                        'id'    => self::MODAL_WIDTH,
-                        'label' => qa_lang( 'flb_like_box/m_like_modal_width_label' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::MODAL_WIDTH . '"',
-                        'value' => qa_opt( self::MODAL_WIDTH ), /*this default value is to fit for Snow theme */
-                    ),
-                    self::MODAL_DELAY               => array(
-                        'id'    => self::MODAL_DELAY,
-                        'label' => qa_lang( 'flb_like_box/m_like_modal_delay' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::MODAL_DELAY . '"',
-                        'value' => qa_opt( self::MODAL_DELAY ),
-                        'note'  => qa_lang( 'flb_like_box/m_like_modal_delay_note' ),
-                    ),
-
-                    self::MODAL_COOKIE_EXPIRE       => array(
-                        'id'    => self::MODAL_COOKIE_EXPIRE,
-                        'label' => qa_lang( 'flb_like_box/m_like_modal_cookie_expire' ),
-                        'type'  => 'text',
-                        'tags'  => 'name="' . self::MODAL_COOKIE_EXPIRE . '"',
-                        'value' => qa_opt( self::MODAL_COOKIE_EXPIRE ),
-                        'note'  => qa_lang( 'flb_like_box/m_like_modal_cookie_expire_note' ),
-                    ),
-                    self::MODAL_HEADER_MAIN_TEXT    => array(
-                        'id'    => self::MODAL_HEADER_MAIN_TEXT,
-                        'label' => qa_lang( 'flb_like_box/m_pop_up_header_text' ),
-                        'type'  => 'textarea',
-                        'rows'  => 4,
-                        'tags'  => 'name="' . self::MODAL_HEADER_MAIN_TEXT . '"',
-                        'value' => qa_opt( self::MODAL_HEADER_MAIN_TEXT ),
-                    ),
-
-                    self::MODAL_FOOTER_TEXT         => array(
-                        'id'    => self::MODAL_FOOTER_TEXT,
-                        'label' => qa_lang( 'flb_like_box/m_pop_up_footer_text' ),
-                        'type'  => 'textarea',
-                        'rows'  => 4,
-                        'tags'  => 'name="' . self::MODAL_FOOTER_TEXT . '"',
-                        'value' => qa_opt( self::MODAL_FOOTER_TEXT ),
-                    ),
-                    self::MODAL_COSTUM_CSS          => array(
-                        'id'    => self::MODAL_COSTUM_CSS,
-                        'label' => qa_lang( 'flb_like_box/m_costum_css' ),
-                        'type'  => 'textarea',
-                        'rows'  => 4,
-                        'tags'  => 'name="' . self::MODAL_COSTUM_CSS . '"',
-                        'value' => qa_opt( self::MODAL_COSTUM_CSS ),
-                        'note'  => qa_lang_html( 'flb_like_box/m_costum_css_note' ),
-                    ),
+                    self::SHOW_FB_LIKE_MODAL        => $this->get_show_like_modal_field(),
+                    self::MODAL_USE_CSS_FROM_THEME  => $this->get_like_modal_use_css_from_theme_field(),
+                    self::MODAL_DISPLAY_EVERY_TIME  => $this->get_like_modal_display_every_time_field(),
+                    self::MODAL_COLOR_SCHEME        => $this->get_like_modal_color_scheme_field(),
+                    self::MODAL_SHOW_HEADER         => $this->get_like_modal_show_header_field(),
+                    self::MODAL_SHOW_BORDER         => $this->get_like_modal_show_border_field(),
+                    self::MODAL_SHOW_FACES          => $this->get_like_modal_show_faces_field(),
+                    self::MODAL_SHOW_DATA_STREAM    => $this->get_like_modal_show_data_stream_field(),
+                    self::MODAL_HEIGHT              => $this->get_like_modal_height_field(),
+                    self::MODAL_WIDTH               => $this->get_like_modal_width_field(),
+                    self::MODAL_DELAY               => $this->get_like_modal_delay_field(),
+                    self::MODAL_COOKIE_EXPIRE       => $this->get_like_modal_cookie_expire_field(),
+                    self::MODAL_HEADER_MAIN_TEXT    => $this->get_like_modal_header_main_text_field(),
+                    self::MODAL_FOOTER_TEXT         => $this->get_like_modal_footer_text_field(),
+                    self::MODAL_COSTUM_CSS          => $this->get_like_modal_custom_css_field(),
                 ),
 
-                'buttons' => array(
-                    array(
-                        'label' => qa_lang( 'flb_like_box/save_changes' ),
-                        'tags'  => 'name="' . self::SAVE_BUTTON . '"',
-                    ),
-                ),
+                'buttons' => $this->get_admin_buttons(),
             );
         }
 
@@ -410,6 +212,399 @@
         function allow_template( $template )
         {
             return ( $template != 'admin' );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_fb_page_url_field()
+        {
+            return array(
+                'label' => qa_lang( 'flb_like_box/ur_fb_page_url' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::FACEBOOK_PAGE_URL . '"',
+                'value' => qa_opt( self::FACEBOOK_PAGE_URL ),
+                'note'  => qa_lang( 'flb_like_box/ur_fb_page_url_note' ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_show_likebox_field()
+        {
+            return array(
+                'label' => qa_lang( 'flb_like_box/b_show_fb_like_box' ),
+                'tags'  => 'name="' . self::SHOW_FB_LIKE_BOX . '" id="' . self::SHOW_FB_LIKE_BOX . '"',
+                'value' => qa_opt( self::SHOW_FB_LIKE_BOX ),
+                'type'  => 'checkbox',
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_lokebox_color_scheme_field()
+        {
+            return array(
+                'id'      => self::LIKE_BOX_COLOR_SCHEME,
+                'label'   => qa_lang( 'flb_like_box/b_colorscheme_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::LIKE_BOX_COLOR_SCHEME . '"',
+                'value'   => qa_opt( self::LIKE_BOX_COLOR_SCHEME ),
+                'options' => array(
+                    'light' => 'light',
+                    'dark'  => 'dark',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_likebox_show_header_field()
+        {
+            return array(
+                'id'      => self::LIKE_BOX_SHOW_HEADER,
+                'label'   => qa_lang( 'flb_like_box/b_box_header_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::LIKE_BOX_SHOW_HEADER . '"',
+                'value'   => qa_opt( self::LIKE_BOX_SHOW_HEADER ),
+                'options' => array(
+                    'false' => 'false',
+                    'true'  => 'true',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_likebox_show_border_field()
+        {
+            return array(
+                'id'      => self::LIKE_BOX_SHOW_BORDER,
+                'label'   => qa_lang( 'flb_like_box/b_show_border_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::LIKE_BOX_SHOW_BORDER . '"',
+                'value'   => qa_opt( self::LIKE_BOX_SHOW_BORDER ),
+                'options' => array(
+                    'false' => 'false',
+                    'true'  => 'true',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_likebox_show_faces_field()
+        {
+            return array(
+                'id'      => self::LIKE_BOX_SHOW_FACES,
+                'label'   => qa_lang( 'flb_like_box/b_show_faces_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::LIKE_BOX_SHOW_FACES . '"',
+                'value'   => qa_opt( self::LIKE_BOX_SHOW_FACES ),
+                'options' => array(
+                    'true'  => 'true',
+                    'false' => 'false',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_likebox_show_data_stream()
+        {
+            return array(
+                'id'      => self::LIKE_BOX_SHOW_DATA_STREAM,
+                'label'   => qa_lang( 'flb_like_box/b_show_stream_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::LIKE_BOX_SHOW_DATA_STREAM . '"',
+                'value'   => qa_opt( self::LIKE_BOX_SHOW_DATA_STREAM ),
+                'options' => array(
+                    'false' => 'false',
+                    'true'  => 'true',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_likebox_height_field()
+        {
+            return array(
+                'id'    => self::LIKE_BOX_HEIGHT,
+                'label' => qa_lang( 'flb_like_box/b_like_box_height_label' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::LIKE_BOX_HEIGHT . '"',
+                'value' => qa_opt( self::LIKE_BOX_HEIGHT ), /*this default value is to fit for Snow theme */
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_likebox_width_field()
+        {
+            return array(
+                'id'    => self::LIKE_BOX_WIDTH,
+                'label' => qa_lang( 'flb_like_box/b_like_box_width_label' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::LIKE_BOX_WIDTH . '"',
+                'value' => ( ! !qa_opt( self::LIKE_BOX_WIDTH ) ) ? qa_opt( self::LIKE_BOX_WIDTH ) : 200, /*this default value is to fit for Snow theme */
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_show_like_modal_field()
+        {
+            return array(
+                'label' => qa_lang( 'flb_like_box/m_show_fb_like_modal' ),
+                'tags'  => 'name="' . self::SHOW_FB_LIKE_MODAL . '" id="' . self::SHOW_FB_LIKE_MODAL . '"',
+                'value' => qa_opt( self::SHOW_FB_LIKE_MODAL ),
+                'type'  => 'checkbox',
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_use_css_from_theme_field()
+        {
+            return array(
+                'id'    => self::MODAL_USE_CSS_FROM_THEME,
+                'label' => qa_lang( 'flb_like_box/m_use_css_from_theme_file' ),
+                'tags'  => 'name="' . self::MODAL_USE_CSS_FROM_THEME . '"',
+                'value' => qa_opt( self::MODAL_USE_CSS_FROM_THEME ),
+                'type'  => 'checkbox',
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_display_every_time_field()
+        {
+            return array(
+                'id'    => self::MODAL_DISPLAY_EVERY_TIME,
+                'label' => qa_lang( 'flb_like_box/m_display_on_every_load' ),
+                'tags'  => 'name="' . self::MODAL_DISPLAY_EVERY_TIME . '"',
+                'value' => qa_opt( self::MODAL_DISPLAY_EVERY_TIME ),
+                'type'  => 'checkbox',
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_color_scheme_field()
+        {
+            return array(
+                'id'      => self::MODAL_COLOR_SCHEME,
+                'label'   => qa_lang( 'flb_like_box/m_colorscheme_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::MODAL_COLOR_SCHEME . '"',
+                'value'   => qa_opt( self::MODAL_COLOR_SCHEME ),
+                'options' => array(
+                    'light' => 'light',
+                    'dark'  => 'dark',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_show_header_field()
+        {
+            return array(
+                'id'      => self::MODAL_SHOW_HEADER,
+                'label'   => qa_lang( 'flb_like_box/m_box_header_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::MODAL_SHOW_HEADER . '"',
+                'value'   => qa_opt( self::MODAL_SHOW_HEADER ),
+                'options' => array(
+                    'false' => 'false',
+                    'true'  => 'true',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_show_border_field()
+        {
+            return array(
+                'id'      => self::MODAL_SHOW_BORDER,
+                'label'   => qa_lang( 'flb_like_box/m_show_border_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::MODAL_SHOW_BORDER . '"',
+                'value'   => qa_opt( self::MODAL_SHOW_BORDER ),
+                'options' => array(
+                    'false' => 'false',
+                    'true'  => 'true',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_show_faces_field()
+        {
+            return array(
+                'id'      => self::MODAL_SHOW_FACES,
+                'label'   => qa_lang( 'flb_like_box/m_show_faces_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::MODAL_SHOW_FACES . '"',
+                'value'   => qa_opt( self::MODAL_SHOW_FACES ),
+                'options' => array(
+                    'true'  => 'true',
+                    'false' => 'false',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_show_data_stream_field()
+        {
+            return array(
+                'id'      => self::MODAL_SHOW_DATA_STREAM,
+                'label'   => qa_lang( 'flb_like_box/m_show_stream_label' ),
+                'type'    => 'select',
+                'tags'    => 'name="' . self::MODAL_SHOW_DATA_STREAM . '"',
+                'value'   => qa_opt( self::MODAL_SHOW_DATA_STREAM ),
+                'options' => array(
+                    'false' => 'false',
+                    'true'  => 'true',
+                ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_height_field()
+        {
+            return array(
+                'id'    => self::MODAL_HEIGHT,
+                'label' => qa_lang( 'flb_like_box/m_like_modal_height_label' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::MODAL_HEIGHT . '"',
+                'value' => qa_opt( self::MODAL_HEIGHT ), /*this default value is to fit for Snow theme */
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_width_field()
+        {
+            return array(
+                'id'    => self::MODAL_WIDTH,
+                'label' => qa_lang( 'flb_like_box/m_like_modal_width_label' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::MODAL_WIDTH . '"',
+                'value' => qa_opt( self::MODAL_WIDTH ), /*this default value is to fit for Snow theme */
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_delay_field()
+        {
+            return array(
+                'id'    => self::MODAL_DELAY,
+                'label' => qa_lang( 'flb_like_box/m_like_modal_delay' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::MODAL_DELAY . '"',
+                'value' => qa_opt( self::MODAL_DELAY ),
+                'note'  => qa_lang( 'flb_like_box/m_like_modal_delay_note' ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_cookie_expire_field()
+        {
+            return array(
+                'id'    => self::MODAL_COOKIE_EXPIRE,
+                'label' => qa_lang( 'flb_like_box/m_like_modal_cookie_expire' ),
+                'type'  => 'text',
+                'tags'  => 'name="' . self::MODAL_COOKIE_EXPIRE . '"',
+                'value' => qa_opt( self::MODAL_COOKIE_EXPIRE ),
+                'note'  => qa_lang( 'flb_like_box/m_like_modal_cookie_expire_note' ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_header_main_text_field()
+        {
+            return array(
+                'id'    => self::MODAL_HEADER_MAIN_TEXT,
+                'label' => qa_lang( 'flb_like_box/m_pop_up_header_text' ),
+                'type'  => 'textarea',
+                'rows'  => 4,
+                'tags'  => 'name="' . self::MODAL_HEADER_MAIN_TEXT . '"',
+                'value' => qa_opt( self::MODAL_HEADER_MAIN_TEXT ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_footer_text_field()
+        {
+            return array(
+                'id'    => self::MODAL_FOOTER_TEXT,
+                'label' => qa_lang( 'flb_like_box/m_pop_up_footer_text' ),
+                'type'  => 'textarea',
+                'rows'  => 4,
+                'tags'  => 'name="' . self::MODAL_FOOTER_TEXT . '"',
+                'value' => qa_opt( self::MODAL_FOOTER_TEXT ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_like_modal_custom_css_field()
+        {
+            return array(
+                'id'    => self::MODAL_COSTUM_CSS,
+                'label' => qa_lang( 'flb_like_box/m_costum_css' ),
+                'type'  => 'textarea',
+                'rows'  => 4,
+                'tags'  => 'name="' . self::MODAL_COSTUM_CSS . '"',
+                'value' => qa_opt( self::MODAL_COSTUM_CSS ),
+                'note'  => qa_lang_html( 'flb_like_box/m_costum_css_note' ),
+            );
+        }
+
+        /**
+         * @return array
+         */
+        private function get_admin_buttons()
+        {
+            return array(
+                array(
+                    'label' => qa_lang( 'flb_like_box/save_changes' ),
+                    'tags'  => 'name="' . self::SAVE_BUTTON . '"',
+                ),
+            );
         }
 
     }
